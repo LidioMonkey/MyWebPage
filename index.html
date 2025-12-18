@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lidio's profile</title>
+    <link rel="stylesheet" href="./CSS/styles.css">
+</head>
+<body>
+
+    <header>
+        <nav class="pixel-panel">
+            <ul class="nav-links">
+                <li><a href="#home">🏠 基地</a></li>
+                <li><a href="#about">📜 角色档案</a></li>
+                <li><a href="#portfolio">⚔️ 战斗记录(作品)</a></li>
+                <li><a href="#minigame">🎮 训练场</a></li>
+                <li><a href="#contact">📫 告示板</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="home" class="container">
+            <div class="hero-panel pixel-panel">
+                <div class="hero-content">
+                    <img src="https://via.placeholder.com/180" alt="Player Avatar" class="pixel-avatar">
+                    <div class="hero-text">
+                        <h1>PLAYER: <span class="highlight">YOUR NAME</span></h1>
+                        <p class="status-line">当前状态: <span id="typewriter"></span></p>
+                        <p>欢迎来到我的数字农场。这里种植代码，收获创意。</p>
+                        <div class="btn-group">
+                            <a href="#portfolio" class="pixel-btn primary">查看装备 (Portfolio)</a>
+                            <a href="#resume" class="pixel-btn secondary">下载档案 (Resume)</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="about" class="container">
+            <h2 class="section-title">📊 角色属性 (About Me)</h2>
+            <div class="grid-2-col">
+                <div class="pixel-panel">
+                    <h3>📜 背景故事 (Background)</h3>
+                    <p>我是一名热衷于全栈开发的大三学生。就像在星露谷经营农场一样，我享受从零构建项目的过程。</p>
+                    <hr class="pixel-hr">
+                    <h3>🎯 冒险目标 (Career Goals)</h3>
+                    <ul class="pixel-list">
+                        <li>解锁 "全栈工程师" 成就</li>
+                        <li>掌握云计算与微服务架构</li>
+                        <li>开发一款日活过万的应用</li>
+                    </ul>
+                </div>
+
+                <div class="pixel-panel">
+                    <h3>⚔️ 技能树 (Skills)</h3>
+                    <div class="skill-box">
+                        <label>HTML5 / CSS3 <span class="level">Lv.8</span></label>
+                        <div class="progress-bg"><div class="progress-fill p-80"></div></div>
+                    </div>
+                    <div class="skill-box">
+                        <label>JavaScript / ES6 <span class="level">Lv.7</span></label>
+                        <div class="progress-bg"><div class="progress-fill p-70"></div></div>
+                    </div>
+                    <div class="skill-box">
+                        <label>Java / Spring Boot <span class="level">Lv.6</span></label>
+                        <div class="progress-bg"><div class="progress-fill p-60"></div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="portfolio" class="container">
+            <h2 class="section-title">🎒 物品背包 (Portfolio)</h2>
+            <div class="portfolio-grid">
+                <div class="item-card pixel-panel">
+                    <div class="item-img-box">
+                        <div class="pixel-placeholder">PROJECT 1</div>
+                    </div>
+                    <h3>智能食谱 API</h3>
+                    <p>基于 Spring Boot 的后端服务。</p>
+                    <div class="item-actions">
+                        <button class="pixel-btn small" onclick="openModal('p1')">详情</button>
+                        <a href="#" class="pixel-btn small outline">GitHub</a>
+                    </div>
+                </div>
+                <div class="item-card pixel-panel">
+                    <div class="item-img-box">
+                        <div class="pixel-placeholder">PROJECT 2</div>
+                    </div>
+                    <h3>复古博客前端</h3>
+                    <p>响应式 CSS Grid 布局练习。</p>
+                    <div class="item-actions">
+                        <button class="pixel-btn small" onclick="openModal('p2')">详情</button>
+                        <a href="#" class="pixel-btn small outline">Demo</a>
+                    </div>
+                </div>
+                <div class="item-card pixel-panel">
+                    <div class="item-img-box">
+                        <div class="pixel-placeholder">PROJECT 3</div>
+                    </div>
+                    <h3>JS 网页小游戏</h3>
+                    <p>纯原生 JavaScript 实现。</p>
+                    <div class="item-actions">
+                        <button class="pixel-btn small" onclick="openModal('p3')">详情</button>
+                        <a href="#" class="pixel-btn small outline">Play</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="minigame" class="container">
+            <div class="pixel-panel game-panel">
+                <h3>🎮 史莱姆训练场 (Mini-Game)</h3>
+                <p>点击史莱姆获得经验值！(JS Interaction)</p>
+                <div class="game-area">
+                    <button id="slimeBtn" class="slime-mob">💧</button>
+                    <div class="score-board">EXP: <span id="score">0</span></div>
+                </div>
+                <p id="gameMsg" class="fade-text">开始战斗！</p>
+            </div>
+        </section>
+
+        <section id="resume" class="container center-text">
+            <div class="pixel-panel inline-block">
+                <h2>📜 冒险履历书</h2>
+                <p>需要详细的属性报告吗？点击下方获取 PDF 版本。</p>
+                <br>
+                <a href="resume.pdf" download class="pixel-btn primary big">⬇️ 下载简历 (PDF)</a>
+            </div>
+        </section>
+
+        <section id="contact" class="container">
+            <h2 class="section-title">📫 给镇长写信 (Contact)</h2>
+            <form id="contactForm" class="pixel-panel form-layout">
+                <div class="form-group">
+                    <label for="c-name">冒险家姓名:</label>
+                    <input type="text" id="c-name" class="pixel-input">
+                    <span class="error-msg" id="nameError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="c-email">回信地址 (Email):</label>
+                    <input type="email" id="c-email" class="pixel-input">
+                    <span class="error-msg" id="emailError"></span>
+                </div>
+                <div class="form-group">
+                    <label for="c-msg">信件内容:</label>
+                    <textarea id="c-msg" rows="5" class="pixel-input"></textarea>
+                    <span class="error-msg" id="msgError"></span>
+                </div>
+                <button type="submit" class="pixel-btn primary full-width">发送信鸽</button>
+            </form>
+        </section>
+
+    </main>
+
+    <footer class="container center-text">
+        <p>© 2025 Player One. Built with HTML, CSS, JS.</p>
+    </footer>
+
+    <div id="projectModal" class="modal-overlay hidden">
+        <div class="modal-box pixel-panel">
+            <span class="close-btn" onclick="closeModal()">X</span>
+            <h2 id="m-title">Title</h2>
+            <div class="modal-body">
+                <p id="m-desc">Description</p>
+                <p><strong>技术栈:</strong> <span id="m-tech"></span></p>
+            </div>
+        </div>
+    </div>
+    <script src="./JS/javascripts.js"></script>
+</body>
+</html>

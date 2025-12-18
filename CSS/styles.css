@@ -1,0 +1,207 @@
+/* 定义颜色变量：高对比度方案 */
+:root {
+    --bg-color: #202020;         /* 网页深色背景 */
+    --panel-bg: #fdf5e6;         /* 羊皮纸亮色背景 (解决看不清的问题) */
+    --panel-border: #8b4513;     /* 深棕色边框 */
+    --text-primary: #3e2723;     /* 深咖啡色文字 (高对比) */
+    --text-secondary: #5d4037;   
+    --accent-color: #e65100;     /* 橙色强调 */
+    --success-color: #2e7d32;    /* 绿色进度条 */
+    --font-pixel: 'VT323', monospace; /* Google Fonts */
+    --font-heading: 'Press Start 2P', cursive;
+}
+
+* { box-sizing: border-box; }
+
+body {
+    background-color: var(--bg-color);
+    background-image: 
+        url('../imgs/background.png'),
+        linear-gradient(30deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
+        linear-gradient(150deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
+        linear-gradient(30deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
+        linear-gradient(150deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
+        linear-gradient(60deg, #252525 25%, transparent 25.5%, transparent 75%, #252525 75%, #252525),
+        linear-gradient(60deg, #252525 25%, transparent 25.5%, transparent 75%, #252525 75%, #252525);
+    color: var(--text-primary);
+    font-family: var(--font-pixel);
+    font-size: 20px; /* 加大字号 */
+    margin: 0;
+    line-height: 1.6;
+}
+
+/* 通用容器 */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+/* 核心风格：像素面板 */
+.pixel-panel {
+    background-color: var(--panel-bg);
+    border: 4px solid var(--panel-border);
+    box-shadow: 8px 8px 0px rgba(0,0,0,0.6); /* 立体阴影 */
+    padding: 25px;
+    position: relative;
+    border-radius: 4px;
+}
+
+/* 标题样式 */
+h1, h2, h3 {
+    font-family: var(--font-heading);
+    color: var(--text-primary);
+    margin-top: 0;
+    text-transform: uppercase;
+}
+
+.section-title {
+    text-align: center;
+    color: #fff;
+    text-shadow: 3px 3px 0 #000;
+    margin-bottom: 30px;
+}
+
+/* 导航栏 */
+header {
+    background: #3e2723;
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    border-bottom: 4px solid #1a100e;
+}
+
+.nav-links {
+    list-style: none;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    padding: 0;
+    margin: 0;
+    flex-wrap: wrap;
+}
+
+.nav-links a {
+    color: #fdf5e6;
+    text-decoration: none;
+    font-size: 1.2rem;
+    transition: color 0.3s;
+}
+
+.nav-links a:hover {
+    color: var(--accent-color);
+    text-shadow: 2px 2px 0 #000;
+}
+
+/* 按钮系统 */
+.pixel-btn {
+    display: inline-block;
+    border: none;
+    padding: 10px 20px;
+    font-family: var(--font-pixel);
+    font-size: 1.2rem;
+    cursor: pointer;
+    text-decoration: none;
+    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
+    transition: transform 0.1s, box-shadow 0.1s;
+    text-align: center;
+}
+
+.pixel-btn:active {
+    transform: translate(2px, 2px);
+    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+}
+
+.pixel-btn.primary {
+    background: var(--accent-color);
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.pixel-btn.secondary {
+    background: #5d4037;
+    color: #fff;
+    border: 2px solid #fff;
+}
+
+.pixel-btn.outline {
+    background: transparent;
+    border: 2px solid var(--text-primary);
+    color: var(--text-primary);
+}
+
+/* 布局：Grid系统  */
+.grid-2-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 20px;
+}
+
+.portfolio-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 25px;
+}
+
+/* 技能进度条 */
+.skill-box { margin-bottom: 15px; }
+.progress-bg {
+    background: #d7ccc8;
+    height: 24px;
+    border: 2px solid var(--text-primary);
+    border-radius: 12px;
+    overflow: hidden;
+}
+.progress-fill {
+    height: 100%;
+    background: var(--success-color);
+    width: 0; /* JS将动态改变这个 */
+    transition: width 1.5s ease-out;
+}
+
+/* 表单样式 */
+.pixel-input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    background: #fff;
+    border: 2px solid var(--text-secondary);
+    font-family: inherit;
+    font-size: 1rem;
+}
+.error-msg {
+    color: red;
+    font-size: 0.9rem;
+    display: block;
+    margin-bottom: 15px;
+    height: 1.2em;
+}
+
+/* 小游戏区域 */
+.game-panel { text-align: center; }
+.slime-mob {
+    font-size: 4rem;
+    background: none;
+    border: none;
+    cursor: pointer;
+    transition: transform 0.1s;
+}
+.slime-mob:active { transform: scale(0.9); }
+
+/* 模态框 */
+.modal-overlay {
+    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+    background: rgba(0,0,0,0.8);
+    display: flex; justify-content: center; align-items: center;
+    z-index: 999;
+}
+.hidden { display: none; }
+.modal-box { width: 90%; max-width: 500px; }
+.close-btn { float: right; cursor: pointer; font-weight: bold; font-size: 1.5rem; }
+
+/* 响应式  */
+@media (max-width: 768px) {
+    .grid-2-col { grid-template-columns: 1fr; }
+    .hero-content { flex-direction: column; text-align: center; }
+}
