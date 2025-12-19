@@ -1,33 +1,28 @@
 /* 定义颜色变量：高对比度方案 */
-:root {
-    --bg-color: #202020;         /* 网页深色背景 */
-    --panel-bg: #fdf5e6;         /* 羊皮纸亮色背景 (解决看不清的问题) */
-    --panel-border: #8b4513;     /* 深棕色边框 */
-    --text-primary: #3e2723;     /* 深咖啡色文字 (高对比) */
-    --text-secondary: #5d4037;   
-    --accent-color: #e65100;     /* 橙色强调 */
-    --success-color: #2e7d32;    /* 绿色进度条 */
-    --font-pixel: 'VT323', monospace; /* Google Fonts */
-    --font-heading: 'Press Start 2P', cursive;
+* {
+    box-sizing: border-box;
 }
 
-* { box-sizing: border-box; }
-
 body {
-    background-color: var(--bg-color);
-    background-image: 
-        url('../imgs/background.png'),
-        linear-gradient(30deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
-        linear-gradient(150deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
-        linear-gradient(30deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
-        linear-gradient(150deg, #2a2a2a 12%, transparent 12.5%, transparent 87%, #2a2a2a 87.5%, #2a2a2a),
-        linear-gradient(60deg, #252525 25%, transparent 25.5%, transparent 75%, #252525 75%, #252525),
-        linear-gradient(60deg, #252525 25%, transparent 25.5%, transparent 75%, #252525 75%, #252525);
-    color: var(--text-primary);
-    font-family: var(--font-pixel);
-    font-size: 20px; /* 加大字号 */
     margin: 0;
+    padding: 0;
+    min-height: 100vh;
     line-height: 1.6;
+    font-family: "courier new", monospace;
+    color: #522e23;
+
+    background-color: #522e23;
+    background-image:
+        linear-gradient(to bottom, transparent 60%, #2d5e2e 100%),
+        /* 向下渐变遮罩 */
+        url('../imgs/stardewPanorama..png');
+    /* 背景全景图 */
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    /* 宽度铺满，高度自动 */
+    background-attachment: fixed;
+    /* 背景固定，产生视差效果 */
 }
 
 /* 通用容器 */
@@ -37,32 +32,6 @@ body {
     padding: 0 20px;
 }
 
-/* 核心风格：像素面板 */
-.pixel-panel {
-    background-color: var(--panel-bg);
-    border: 4px solid var(--panel-border);
-    box-shadow: 8px 8px 0px rgba(0,0,0,0.6); /* 立体阴影 */
-    padding: 25px;
-    position: relative;
-    border-radius: 4px;
-}
-
-/* 标题样式 */
-h1, h2, h3 {
-    font-family: var(--font-heading);
-    color: var(--text-primary);
-    margin-top: 0;
-    text-transform: uppercase;
-}
-
-.section-title {
-    text-align: center;
-    color: #fff;
-    text-shadow: 3px 3px 0 #000;
-    margin-bottom: 30px;
-}
-
-/* 导航栏 */
 header {
     background: #3e2723;
     padding: 10px 0;
@@ -72,136 +41,278 @@ header {
     border-bottom: 4px solid #1a100e;
 }
 
+.pixel-panel {
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* 1. 清除列表默认样式，让它们横向排列 */
 .nav-links {
     list-style: none;
-    display: flex;
-    justify-content: center;
-    gap: 20px;
     padding: 0;
     margin: 0;
+    display: flex;
+    gap: 70px;
+    align-items: flex-start;
+    /* 顶部对齐，防止hover时高度变化影响布局 */
     flex-wrap: wrap;
+    justify-content: center;
 }
 
-.nav-links a {
-    color: #fdf5e6;
+/* 2. 按钮主体样式 (模拟木箱子) */
+.nav-links li a {
+    /* 布局设置 */
+    display: flex;
+    flex-direction: column;
+    /* 让文字和图标垂直排列 */
+    align-items: center;
+    justify-content: center;
     text-decoration: none;
-    font-size: 1.2rem;
-    transition: color 0.3s;
+
+    /* 尺寸与间距 */
+    padding: 30px 100px;
+    min-width: 80px;
+    /* 保证按钮有最小宽度 */
+
+    /* --- 像素风木板核心样式 Start --- */
+    background-color: #ffcd82;
+    /* 木头底色 */
+
+    /* 模拟像素边框：外圈深色，内圈高光/阴影 */
+    border: 3px solid #8B4513;
+    /* 深棕色边框 */
+    box-shadow:
+        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
+        /* 左上高光 */
+        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
+        /* 右下阴影 */
+        2px 2px 0px rgba(0, 0, 0, 0.3);
+    /* 外部投影 */
+
+    border-radius: 4px;
+    /* 轻微圆角 */
+    /* --- 像素风木板核心样式 End --- */
+    /* 文字样式 */
+    color: #d94a38;
+    /* 星露谷风格的红字 */
+    font-weight: bold;
+    font-size: 20px;
+    text-shadow: 1px 1px 0px #ffeebb;
+    /* 文字浅色描边效果 */
+    /* 平滑过渡 */
+    transition: transform 0.1s ease;
 }
 
-.nav-links a:hover {
-    color: var(--accent-color);
-    text-shadow: 2px 2px 0 #000;
-}
-
-/* 按钮系统 */
-.pixel-btn {
-    display: inline-block;
-    border: none;
-    padding: 10px 20px;
-    font-family: var(--font-pixel);
-    font-size: 1.2rem;
+/* 3. 鼠标悬停时的按钮动态 */
+.nav-links li a:hover {
+    transform: translateY(-2px);
+    /* 稍微上浮 */
+    background-color: #ffd699;
+    /* 变亮一点 */
     cursor: pointer;
-    text-decoration: none;
-    box-shadow: 4px 4px 0 rgba(0,0,0,0.5);
-    transition: transform 0.1s, box-shadow 0.1s;
+}
+
+/* 4. 核心功能：下方图标 (默认隐藏) */
+.nav-links li a::after {
+
+    content: attr(data-icon);
+    font-size: 20px;
+    height: 0;
+    /* 默认高度为0，不占位 */
+    opacity: 0;
+    /* 默认透明 */
+    transform: scale(0);
+    /* 默认缩小 */
+    margin-top: 0;
+
+    /* 动画过渡 */
+    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* 5. 鼠标悬停时：显示图标 */
+.nav-links li a:hover::after {
+    height: auto;
+    /* 恢复高度 */
+    opacity: 1;
+    /* 变实 */
+    transform: scale(1);
+    /* 恢复大小 */
+    margin-top: 5px;
+    /* 文字和图标的间距 */
+}
+
+.header-logo {
     text-align: center;
+    padding-top: 50px;
+    animation: float 3s ease-in-out infinite;
+    /* 让Logo轻轻浮动 */
 }
 
-.pixel-btn:active {
-    transform: translate(2px, 2px);
-    box-shadow: 2px 2px 0 rgba(0,0,0,0.5);
+.header-logo img {
+    max-width: 600px;
+    width: 80%;
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
 }
 
-.pixel-btn.primary {
-    background: var(--accent-color);
-    color: #fff;
-    border: 2px solid #fff;
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
 }
 
-.pixel-btn.secondary {
-    background: #5d4037;
-    color: #fff;
-    border: 2px solid #fff;
+/* --- 3. 个人介绍卡片 (DialogBox) --- */
+.intro-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 40px;
+    padding-bottom: 100px;
 }
 
-.pixel-btn.outline {
-    background: transparent;
-    border: 2px solid var(--text-primary);
-    color: var(--text-primary);
+.intro-card {
+    /* 使用 DialogBoxGreen 作为背景 */
+    background-image: url('./DialogBoxGreen..png');
+    background-size: 100% 100%;
+    /* 拉伸铺满 */
+    background-repeat: no-repeat;
+
+    width: 600px;
+    min-height: 250px;
+    /* 保证有足够高度 */
+    padding: 40px 50px;
+    /* 留出边框的内部空间 */
+
+    display: flex;
+    align-items: center;
+    gap: 30px;
+    /* 头像和文字的间距 */
+
+    /* 像素风阴影效果 */
+    filter: drop-shadow(5px 5px 0px rgba(0, 0, 0, 0.4));
 }
 
-/* 布局：Grid系统  */
-.grid-2-col {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 20px;
-}
-
-.portfolio-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-    gap: 25px;
-}
-
-/* 技能进度条 */
-.skill-box { margin-bottom: 15px; }
-.progress-bg {
-    background: #d7ccc8;
-    height: 24px;
-    border: 2px solid var(--text-primary);
-    border-radius: 12px;
+/* 头像样式 */
+.avatar {
+    width: 120px;
+    height: 120px;
+    background-color: #d8a06e;
+    border: 4px solid #8b4513;
+    border-radius: 50%;
     overflow: hidden;
-}
-.progress-fill {
-    height: 100%;
-    background: var(--success-color);
-    width: 0; /* JS将动态改变这个 */
-    transition: width 1.5s ease-out;
+    flex-shrink: 0;
+    /* 防止头像被挤压 */
 }
 
-/* 表单样式 */
-.pixel-input {
+.avatar img {
     width: 100%;
-    padding: 10px;
-    margin-bottom: 5px;
-    background: #fff;
-    border: 2px solid var(--text-secondary);
-    font-family: inherit;
-    font-size: 1rem;
-}
-.error-msg {
-    color: red;
-    font-size: 0.9rem;
-    display: block;
-    margin-bottom: 15px;
-    height: 1.2em;
+    height: 100%;
+    object-fit: cover;
 }
 
-/* 小游戏区域 */
-.game-panel { text-align: center; }
-.slime-mob {
-    font-size: 4rem;
-    background: none;
-    border: none;
+/* 文字内容 */
+.info {
+    flex: 1;
+}
+
+.info h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    color: #8b4513;
+    text-transform: uppercase;
+}
+
+.info p {
+    margin: 0;
+    line-height: 1.6;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.music-btn {
+    position: fixed;
+    top: 160px;
+    left: 20px;
+    z-index: 1000;
+
+    /* 按钮外观 */
+    width: 60px;
+    height: 60px;
+    background-color: #ffcd82;
+    border: 3px solid #8B4513;
+    box-shadow:
+        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
+        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
+        2px 2px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
     cursor: pointer;
-    transition: transform 0.1s;
 }
-.slime-mob:active { transform: scale(0.9); }
 
-/* 模态框 */
-.modal-overlay {
-    position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-    background: rgba(0,0,0,0.8);
-    display: flex; justify-content: center; align-items: center;
-    z-index: 999;
+.music-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
 }
-.hidden { display: none; }
-.modal-box { width: 90%; max-width: 500px; }
-.close-btn { float: right; cursor: pointer; font-weight: bold; font-size: 1.5rem; }
+
+/* 按钮内的小鸡图标 */
+.music-icon {
+    font-size: 30px;
+}
+
+/* 播放状态样式 */
+.music-btn.playing {
+    background-color: #ffd699;
+    border-color: #d94a38;
+    /* 播放时边框变红 */
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+/* 响应式调整：手机端适配 */
+@media (max-width: 768px) {
+    body {
+        background-size: auto 100vh;
+        /* 竖屏时让背景更高 */
+    }
+
+    .header-logo img {
+        width: 90%;
+    }
+
+    .intro-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 30px;
+        width: 85%;
+    }
+
+    .avatar {
+        margin-bottom: 20px;
+    }
+}
 
 /* 响应式  */
 @media (max-width: 768px) {
-    .grid-2-col { grid-template-columns: 1fr; }
-    .hero-content { flex-direction: column; text-align: center; }
+    .grid-2-col {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
 }
