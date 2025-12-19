@@ -1,0 +1,127 @@
+body {
+    background-image: url('../imgs/index-imgs/bg.png');
+
+    background-size: 100% 100%;
+    /* 让背景图铺满屏幕，不随滚动条滚动 */
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+    padding: 40px;
+    color: #522e23;
+}
+
+/* 页面主体容器：防止被底部导航栏挡住 */
+.page-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding-bottom: 180px;
+    /* 关键：留出底部导航栏的空间 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.paper-panel {
+    background-image: url('../imgs/all-imgs/letterBG.png');
+    background-color: transparent;
+    background-size: 100% 100%;
+
+    background-repeat: no-repeat;
+
+    padding: 40px;
+
+}
+
+/* 页面标题 */
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    color: #8b4513;
+    border-bottom: 3px dashed #d2b48c;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px #fff;
+}
+
+/* --- 角色档案 (About) 专用 --- */
+.profile-layout {
+    display: flex;
+    gap: 40px;
+    flex-wrap: wrap;
+}
+
+.profile-left {
+    flex: 1;
+    min-width: 250px;
+    text-align: center;
+    background: rgba(255, 255, 255, 0.4);
+    padding: 20px;
+    border-radius: 8px;
+    border: 2px dashed #b97a57;
+}
+
+.profile-right {
+    flex: 2;
+    min-width: 300px;
+}
+
+
+
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 40%;
+    border: 4px solid #8b4513;
+    overflow: hidden;
+    margin-bottom: 20px;
+    margin: 0 auto 20px;
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+
+/* 技能条样式 */
+.skill-item {
+    margin-bottom: 15px;
+}
+
+.skill-name {
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.progress-bar-bg {
+    background: #522e23;
+    height: 20px;
+    border-radius: 10px;
+    overflow: hidden;
+    border: 2px solid #fff;
+}
+
+.progress-bar-fill {
+    background: #76c356;
+    /* 经验条绿色 */
+    height: 100%;
+    width: 0%;
+    /* 初始宽度 */
+    transition: width 1s ease;
+}
+
+/* --- 手机端适配 --- */
+@media (max-width: 768px) {
+    .back-home-img-btn {
+        /* 手机上底部有导航栏，需要把按钮往上抬，防止被挡住 */
+        bottom: 100px;
+        right: 20px;
+
+        /* 如果图片在手机上太大，可以在这里缩小一点 */
+        /* width: 48px; */
+        /* height: 48px; */
+    }
+}

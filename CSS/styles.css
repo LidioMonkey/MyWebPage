@@ -1,318 +1,54 @@
-/* 定义颜色变量：高对比度方案 */
-* {
-    box-sizing: border-box;
-}
-
-body {
-    margin: 0;
-    padding: 0;
-    min-height: 100vh;
-    line-height: 1.6;
-    font-family: "courier new", monospace;
-    color: #522e23;
-
-    background-color: #522e23;
-    background-image:
-        linear-gradient(to bottom, transparent 60%, #2d5e2e 100%),
-        /* 向下渐变遮罩 */
-        url('../imgs/stardewPanorama..png');
-    /* 背景全景图 */
-    background-repeat: no-repeat;
-    background-position: top center;
-    background-size: 100% auto;
-    /* 宽度铺满，高度自动 */
-    background-attachment: fixed;
-    /* 背景固定，产生视差效果 */
-}
-
-/* 通用容器 */
-.container {
-    max-width: 900px;
-    margin: 40px auto;
-    padding: 0 20px;
-}
-
-header {
-    background: #3e2723;
-    padding: 10px 0;
-    position: sticky;
-    top: 0;
-    z-index: 100;
-    border-bottom: 4px solid #1a100e;
-}
-
-.pixel-panel {
-    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
-}
-
-/* 1. 清除列表默认样式，让它们横向排列 */
-.nav-links {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    display: flex;
-    gap: 70px;
-    align-items: flex-start;
-    /* 顶部对齐，防止hover时高度变化影响布局 */
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
-/* 2. 按钮主体样式 (模拟木箱子) */
-.nav-links li a {
-    /* 布局设置 */
-    display: flex;
-    flex-direction: column;
-    /* 让文字和图标垂直排列 */
-    align-items: center;
-    justify-content: center;
-    text-decoration: none;
-
-    /* 尺寸与间距 */
-    padding: 30px 100px;
-    min-width: 80px;
-    /* 保证按钮有最小宽度 */
-
-    /* --- 像素风木板核心样式 Start --- */
-    background-color: #ffcd82;
-    /* 木头底色 */
-
-    /* 模拟像素边框：外圈深色，内圈高光/阴影 */
-    border: 3px solid #8B4513;
-    /* 深棕色边框 */
-    box-shadow:
-        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
-        /* 左上高光 */
-        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
-        /* 右下阴影 */
-        2px 2px 0px rgba(0, 0, 0, 0.3);
-    /* 外部投影 */
-
-    border-radius: 4px;
-    /* 轻微圆角 */
-    /* --- 像素风木板核心样式 End --- */
-    /* 文字样式 */
-    color: #d94a38;
-    /* 星露谷风格的红字 */
-    font-weight: bold;
-    font-size: 20px;
-    text-shadow: 1px 1px 0px #ffeebb;
-    /* 文字浅色描边效果 */
-    /* 平滑过渡 */
-    transition: transform 0.1s ease;
-}
-
-/* 3. 鼠标悬停时的按钮动态 */
-.nav-links li a:hover {
-    transform: translateY(-2px);
-    /* 稍微上浮 */
-    background-color: #ffd699;
-    /* 变亮一点 */
-    cursor: pointer;
-}
-
-/* 4. 核心功能：下方图标 (默认隐藏) */
-.nav-links li a::after {
-
-    content: attr(data-icon);
-    font-size: 20px;
-    height: 0;
-    /* 默认高度为0，不占位 */
-    opacity: 0;
-    /* 默认透明 */
-    transform: scale(0);
-    /* 默认缩小 */
-    margin-top: 0;
-
-    /* 动画过渡 */
-    transition: all 0.2s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-}
-
-/* 5. 鼠标悬停时：显示图标 */
-.nav-links li a:hover::after {
-    height: auto;
-    /* 恢复高度 */
-    opacity: 1;
-    /* 变实 */
-    transform: scale(1);
-    /* 恢复大小 */
-    margin-top: 5px;
-    /* 文字和图标的间距 */
-}
-
-.header-logo {
-    text-align: center;
-    padding-top: 50px;
-    animation: float 3s ease-in-out infinite;
-    /* 让Logo轻轻浮动 */
-}
-
-.header-logo img {
-    max-width: 600px;
-    width: 80%;
-    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.3));
-}
-
-@keyframes float {
-
-    0%,
-    100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-/* --- 3. 个人介绍卡片 (DialogBox) --- */
-.intro-container {
-    display: flex;
-    justify-content: center;
-    margin-top: 40px;
-    padding-bottom: 100px;
-}
-
-.intro-card {
-    /* 使用 DialogBoxGreen 作为背景 */
-    background-image: url('./DialogBoxGreen..png');
-    background-size: 100% 100%;
-    /* 拉伸铺满 */
-    background-repeat: no-repeat;
-
-    width: 600px;
-    min-height: 250px;
-    /* 保证有足够高度 */
-    padding: 40px 50px;
-    /* 留出边框的内部空间 */
-
-    display: flex;
-    align-items: center;
-    gap: 30px;
-    /* 头像和文字的间距 */
-
-    /* 像素风阴影效果 */
-    filter: drop-shadow(5px 5px 0px rgba(0, 0, 0, 0.4));
-}
-
-/* 头像样式 */
-.avatar {
-    width: 120px;
-    height: 120px;
-    background-color: #d8a06e;
-    border: 4px solid #8b4513;
-    border-radius: 50%;
-    overflow: hidden;
-    flex-shrink: 0;
-    /* 防止头像被挤压 */
-}
-
-.avatar img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-/* 文字内容 */
-.info {
-    flex: 1;
-}
-
-.info h2 {
-    margin: 0 0 10px 0;
-    font-size: 28px;
-    color: #8b4513;
-    text-transform: uppercase;
-}
-
-.info p {
-    margin: 0;
-    line-height: 1.6;
-    font-weight: bold;
-    font-size: 18px;
-}
-
-.music-btn {
+.back-home-img-btn {
     position: fixed;
-    top: 160px;
-    left: 20px;
-    z-index: 1000;
-
-    /* 按钮外观 */
-    width: 60px;
-    height: 60px;
-    background-color: #ffcd82;
-    border: 3px solid #8B4513;
-    box-shadow:
-        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
-        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
-        2px 2px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    bottom: 100px;
+    /* 距离底部的位置 */
+    right: 80px;
+    /* 距离右侧的位置 */
+    z-index: 2000;
+    /* 确保在最上层 */
+    display: block;
+    /* 让链接变成块级元素，这样才能设置宽高 */
     cursor: pointer;
+
+    width: 150px;
+    height: 100px;
+
+    /* ⚠️【重要修改】请替换为你正常状态图片的路径 */
+    background-image: url('../imgs/backbotton/back-btn.png');
+
+    background-size: contain;
+    /* 确保图片完整显示在框内 */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* 添加一点平滑过渡效果 */
+    transition: all 0.1s ease-in-out;
 }
 
-.music-btn:active {
-    transform: translateY(2px);
-    box-shadow: none;
+/* 鼠标悬停时的状态 */
+.back-home-img-btn:hover {
+    /* ⚠️【重要修改】请替换为你悬停状态 (hover) 图片的路径 */
+    background-image: url('../imgs/backbotton/back-hover-on.png');
+
+    /* 可选：悬停时稍微放大一点点，更有交互感 */
+    transform: scale(1.05);
 }
 
-/* 按钮内的小鸡图标 */
-.music-icon {
-    font-size: 30px;
+/* 点击时的状态 (可选) */
+.back-home-img-btn:active {
+    transform: scale(0.95);
+    /* 点击时稍微缩小，模拟按压感 */
 }
 
-/* 播放状态样式 */
-.music-btn.playing {
-    background-color: #ffd699;
-    border-color: #d94a38;
-    /* 播放时边框变红 */
-}
-
-@keyframes bounce {
-    from {
-        transform: translateY(0);
-    }
-
-    to {
-        transform: translateY(-3px);
-    }
-}
-
-/* 响应式调整：手机端适配 */
+/* --- 手机端适配 --- */
 @media (max-width: 768px) {
-    body {
-        background-size: auto 100vh;
-        /* 竖屏时让背景更高 */
-    }
+    .back-home-img-btn {
+        /* 手机上底部有导航栏，需要把按钮往上抬，防止被挡住 */
+        bottom: 100px;
+        right: 20px;
 
-    .header-logo img {
-        width: 90%;
-    }
-
-    .intro-card {
-        flex-direction: column;
-        text-align: center;
-        padding: 40px 30px;
-        width: 85%;
-    }
-
-    .avatar {
-        margin-bottom: 20px;
-    }
-}
-
-/* 响应式  */
-@media (max-width: 768px) {
-    .grid-2-col {
-        grid-template-columns: 1fr;
-    }
-
-    .hero-content {
-        flex-direction: column;
-        text-align: center;
+        /* 如果图片在手机上太大，可以在这里缩小一点 */
+        /* width: 48px; */
+        /* height: 48px; */
     }
 }

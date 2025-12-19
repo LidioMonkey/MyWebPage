@@ -1,0 +1,422 @@
+/* 定义颜色变量：高对比度方案 */
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    line-height: 1.6;
+    font-family: "courier new", monospace;
+    color: #522e23;
+
+    background-color: #522e23;
+    background-image:
+        linear-gradient(to bottom, transparent 60%, #2d5e2e 100%),
+        /* 向下渐变遮罩 */
+        url('../imgs/index-imgs/bg.png');
+    /* 背景全景图 */
+    background-repeat: no-repeat;
+    background-position: top center;
+    background-size: 100% auto;
+    /* 宽度铺满，高度自动 */
+    background-attachment: fixed;
+    /* 背景固定，产生视差效果 */
+}
+
+/* 通用容器 */
+.container {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 0 20px;
+}
+
+header {
+    padding: 10px 0;
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+header.bottom-nav {
+    position: fixed;
+    /* 固定定位 */
+    top: auto;
+    /* 取消顶部定位 */
+    bottom: 170px;
+    /* 紧贴底部 */
+    left: 0;
+    width: 100%;
+    /* 宽度占满 */
+    /* 可选：加个半透明背景色防止看不清 */
+    padding: 10px 0;
+    z-index: 1000;
+    /* 保证在最最上层 */
+
+    /* 向上投射阴影 */
+}
+
+.pixel-panel {
+    box-shadow: 6px 6px 0 rgba(0, 0, 0, 0.5);
+}
+
+/* 1. 容器样式：让导航横向排列 */
+.nav-links {
+    list-style: none;
+    /* 去除默认列表圆点 */
+    padding: 0;
+    margin: 20px;
+    display: flex;
+    /* 使用 Flex 布局 */
+    gap: 70px;
+    /* 按钮之间的间距 */
+    justify-content: center;
+    /* 居中显示 */
+    flex-wrap: wrap;
+    /* 小屏幕自动换行 */
+}
+
+/* 2. 核心样式：链接按钮 */
+.nav-links li a {
+    /* --- 背景设置 --- */
+    background-image: url('../imgs/all-imgs/button.png');
+    background-size: 100% 100%;
+    /* 让图片充满整个容器 */
+    background-repeat: no-repeat;
+
+    /* --- 尺寸与内边距 --- */
+    /* 根据背景图的比例设置合适的宽高 */
+    width: 200px;
+    height: 100px;
+    /* 设置内边距，确保文字不会压到木牌的边框上 */
+    /* 上 右 下 左 */
+    padding: 12px 15px 15px 15px;
+    box-sizing: border-box;
+    /* 确保 padding 不会撑大盒子 */
+
+    /* --- 内容布局 --- */
+    display: flex;
+    flex-direction: column;
+    /* 让图标在文字下方 */
+    justify-content: center;
+    /* 垂直居中 */
+    align-items: center;
+    /* 水平居中 */
+
+    /* --- 字体样式 --- */
+    font-family: 'DotGothic16', sans-serif;
+    /* 使用像素字体 */
+    text-decoration: none;
+    /* 去除下划线 */
+    color: #8b4513;
+    /* 深褐色文字 (SaddleBrown) */
+    font-size: 16px;
+    /* 根据需要调整字号 */
+    /* 给文字加一点点像素描边，增加立体感 */
+    text-shadow: 1px 1px 0px #d2b48c;
+
+    /* --- 关键：像素化渲染 --- */
+    /* 确保图片放大缩小时保持像素颗粒感，不模糊 */
+    image-rendering: pixelated;
+
+    /* 添加过渡动画 */
+    transition: transform 0.1s, filter 0.1s;
+}
+
+/* 3. 图标处理 (使用伪元素) */
+.nav-links li a::before {
+    content: '';
+    /* 必须有 content 才能显示 */
+
+    /* 初始状态：隐藏 */
+    width: 32px;
+    /* 根据你的图标大小调整 */
+    height: 0px;
+    /* 初始高度为0，不占位置 */
+    opacity: 0;
+    /* 完全透明 */
+    transform: translateY(10px);
+    /* 稍微向下偏移 */
+
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* 过渡动画：让出现过程更丝滑 */
+    transition: all 0.3s ease;
+    margin-bottom: 0px;
+}
+
+/* 4. 鼠标悬停效果 (Hover) - 关键步骤 */
+.nav-links li a:hover::before {
+    height: 32px;
+    /* 恢复高度 */
+    opacity: 1;
+    /* 恢复不透明 */
+    margin-bottom: 5px;
+    /* 给图标和文字之间加点间距 */
+    transform: translateY(0);
+    /* 回到原位 */
+}
+
+
+/* 4. 交互效果：悬停 (Hover) */
+.nav-links li a:hover {
+    font-size: 16px;
+    padding-bottom: 5px;
+    /* 稍微调整文字位置 */
+    filter: brightness(1.1);
+    /* 整体变亮 */
+}
+
+/* 5. 交互效果：点击 (Active) */
+.nav-links li a:active {
+    /* 向下移动，模拟按压效果 */
+    transform: translateY(3px);
+    /* 稍微变暗 */
+    filter: brightness(0.9);
+}
+
+.hero-section {
+    position: relative;
+    /* 关键：让内部的绝对定位元素以我为准 */
+    max-width: 800px;
+    /* 限制整体宽度，和木板图片差不多大 */
+    margin: 0 auto;
+    /* 上下留白，左右居中 */
+    padding: 70px;
+    display: block;
+    /* 块级显示 */
+    
+}
+
+/* 基地 - 图标 */
+.icon-home::before {
+    background-image: url('../imgs/icon/icon-home.png');
+    /* 换成你的图片路径 */
+}
+
+/* 角色档案 - 图标 */
+.icon-about::before {
+    background-image: url('../imgs/icon/icon-about.png');
+    /* 换成你的图片路径 */
+}
+
+/* 战斗记录 - 图标 */
+.icon-works::before {
+    background-image: url('../imgs/icon/icon-works.png');
+    /* 换成你的图片路径 */
+}
+
+/* 训练场 - 图标 */
+.icon-game::before {
+    background-image: url('../imgs/icon/icon-game.png');
+    /* 换成你的图片路径 */
+}
+
+/* 告示板 - 图标 */
+.icon-contact::before {
+    background-image: url('../imgs/icon/icon-contact.png');
+    /* 换成你的图片路径 */
+}
+
+.header-logo {
+    width: 100%;
+    /* 撑满父容器 */
+    position: relative;
+    /* 保持相对定位 */
+    z-index: 1;
+    /* 层级低，在下面 */
+    padding: 0;
+    /* 去除干扰 */
+}
+
+.header-logo img {
+    max-width: 600px;
+    width: 100%;
+    display: block;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* --- 3. 个人介绍卡片 (DialogBox) --- */
+.intro-container {
+    position: absolute;
+    /* 绝对定位：脱离文档流，浮起来 */
+    top: 40%;
+    /* 垂直位置：父容器的一半 */
+    left: 60%;
+    /* 水平位置：父容器的一半 */
+    transform: translate(-50%, -50%);
+    /* 向左上回退自身的一半，实现完美居中 */
+
+    width: 76%;
+    /* 宽度限制：留出木板左右边缘（绳子部分）的空间 */
+    height: auto;
+    z-index: 2;
+    /* 层级高，在木板上面 */
+
+    margin: 0;
+    /* 清除之前的边距，防止偏移 */
+    padding: 0;
+}
+
+.intro-card {
+    background: none !important;
+    /* 去掉之前的 DialogBoxGreen 背景 */
+    box-shadow: none !important;
+    /* 去掉阴影 */
+    border: none;
+
+    display: flex;
+    align-items: center;
+    /* 垂直居中 */
+    justify-content: center;
+    /* 水平居中 */
+    gap: 20px;
+    /* 头像和文字间距 */
+    text-align: left;
+}
+
+.info h2 {
+    color: #522e23;
+    /* 保持深褐色 */
+    margin-bottom: 5px;
+}
+
+.info p {
+    color: #3e2723;
+}
+
+/* 头像样式 */
+.avatar {
+    width: 120px;
+    height: 120px;
+    background-color: #d8a06e;
+    border: 4px solid #8b4513;
+    border-radius: 50%;
+    overflow: hidden;
+    flex-shrink: 0;
+    /* 防止头像被挤压 */
+}
+
+.avatar img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+
+/* 文字内容 */
+.info {
+    flex: 1;
+}
+
+.info h2 {
+    margin: 0 0 10px 0;
+    font-size: 28px;
+    color: #8b4513;
+    text-transform: uppercase;
+}
+
+.info p {
+    margin: 0;
+    line-height: 1.6;
+    font-weight: bold;
+    font-size: 18px;
+}
+
+.music-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+
+    /* 按钮外观 */
+    width: 60px;
+    height: 60px;
+    background-color: #ffcd82;
+    border: 3px solid #8B4513;
+    box-shadow:
+        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
+        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
+        2px 2px 0px rgba(0, 0, 0, 0.3);
+    border-radius: 8px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.music-btn:active {
+    transform: translateY(2px);
+    box-shadow: none;
+}
+
+/* 按钮内的小鸡图标 */
+.music-icon {
+    font-size: 30px;
+}
+
+/* 播放状态样式 */
+.music-btn.playing {
+    background-color: #ffd699;
+    border-color: #d94a38;
+    /* 播放时边框变红 */
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+
+    to {
+        transform: translateY(-3px);
+    }
+}
+
+/* 响应式调整：手机端适配 */
+@media (max-width: 768px) {
+    body {
+        background-size: auto 100vh;
+        /* 竖屏时让背景更高 */
+    }
+
+    .header-logo img {
+        width: 90%;
+    }
+
+    .intro-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 40px 30px;
+        width: 85%;
+    }
+
+    .avatar {
+        margin-bottom: 20px;
+    }
+}
+
+/* 响应式  */
+@media (max-width: 768px) {
+    .grid-2-col {
+        grid-template-columns: 1fr;
+    }
+
+    .hero-content {
+        flex-direction: column;
+        text-align: center;
+    }
+}

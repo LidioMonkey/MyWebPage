@@ -1,0 +1,87 @@
+/* 页面主体容器：防止被底部导航栏挡住 */
+.page-wrapper {
+    max-width: 1000px;
+    margin: 40px auto;
+    padding-bottom: 180px;
+    /* 关键：留出底部导航栏的空间 */
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+/* 修改 .paper-panel 以适配新的背景图 */
+.paper-panel {
+    /* 1. 背景图片设置 */
+    /* ⚠️ 确保文件名正确，如果在 imgs 文件夹下 */
+    background-image: url('../imgs/all-imgs/file.svg'); 
+    background-size: 100% 100%; /* 拉伸铺满容器 */
+    background-repeat: no-repeat;
+    background-color: transparent; /* 移除原来的背景色 */
+
+    /* 2. 移除旧的边框和阴影 (图片自带了) */
+    border: none;
+    box-shadow: none;
+    border-radius: 0;
+
+    /* 3. 尺寸控制 */
+    width: 100%;
+    max-width: 750px; /* 限制最大宽度，防止图片拉太宽变形 */
+    /* 设定宽高比：根据你的图片形状，约为 1.6 : 1 */
+    /* 这样可以保证不管屏幕多宽，图片比例都不变，文字位置就不会跑偏 */
+    aspect-ratio: 1.6 / 1; 
+    margin: 0 auto;   /* 居中 */
+
+    /* 4. 关键：通过内边距把文字“挤”到中间的白纸上 */
+    /* 上：避开顶部的木头和 "Help Wanted" 标题 */
+    padding-top: 18%;   
+    /* 右：避开右边的木框和紫色/粉色便利贴 */
+    padding-right: 22%; 
+    /* 下：避开底部的撕纸痕迹 */
+    padding-bottom: 15%;
+    /* 左：避开左边的木框和绿色便利贴 */
+    padding-left: 15%;  
+
+    /* 5. 布局设置 */
+    box-sizing: border-box; /* 确保 padding 包含在尺寸内 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;    /* 水平居中 */
+    justify-content: center; /* 垂直居中 */
+    color: #522e23;         /* 文字颜色 */
+}
+
+/* 手机适配：在手机上边距要稍微调小一点，保证字能放下 */
+@media (max-width: 768px) {
+    .paper-panel {
+        aspect-ratio: auto; /* 手机上取消固定比例，防止字太多溢出 */
+        min-height: 400px;  /* 保证最小高度 */
+        padding: 100px 60px 80px 60px; /* 手动指定像素边距 */
+        background-size: cover;
+    }
+}
+
+/* 页面标题 */
+.page-title {
+    text-align: center;
+    font-size: 36px;
+    color: #8b4513;
+    border-bottom: 3px dashed #d2b48c;
+    padding-bottom: 20px;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 0px #fff;
+}
+
+/* --- 告示板 (Contact) 专用 --- */
+.notice-board {
+    background-image: url('../imgs/DialogBoxGreen..png');
+    /* 如果你有这个图，或者复用木板背景 */
+    background-size: cover;
+    padding: 40px;
+    text-align: center;
+    color: #522e23;
+}
+
+.contact-list {
+    list-style: none;
+    font-size: 20px;
+    line-height: 2;
+}

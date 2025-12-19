@@ -1,47 +1,30 @@
-/* --- 5. 散步的小鸡样式 --- */
-.chicken-pet {
+/* --- 1. 小鸡容器：负责定位和移动 --- */
+.chicken-pet-container {
     position: fixed;
-    z-index: 999; /* 保证它在背景之上，但在弹窗之下(如果需要) */
+    z-index: 9999;
     
-    /* 假设每一帧小鸡大概是 32x32 像素，根据实际情况调整 */
-    width: 200px; 
-    height: 200px;
+    /* 设定尺寸 (根据你的素材图调整，建议 48px 或 64px) */
+    width: 48px; 
+    height: 48px;
     
-    /* 背景图设置 */
-    background-image: url('../imgs/chicken-pet/tile_1_1.png');
-    background-repeat: no-repeat;
-    
-    /* 重要：这里的 128px 是假设一行有4只鸡 (32px * 4 = 128px)
-       如果你的图很大，需要按比例放大这里 
-    */
-    background-size: px auto; 
-    
-    /* 像素画必须加这个，防止模糊 */
-    image-rendering: pixelated; 
-    
-    /* 默认朝向右，变换中心点设为底部中间 */
+    /* 默认中心点 */
     transform-origin: bottom center;
-    transition: top 2s linear, left 2s linear; /* 移动时的平滑过渡 */
-    pointer-events: none; /* 让鼠标可以透过小鸡点击后面的东西 */
+    pointer-events: none; /* 让鼠标穿透，不影响网页点击 */
+    
+    /* 移动时的平滑过渡 (由 JS 动态控制时间) */
+    transition: top 0s linear, left 0s linear;
 }
 
-/* 走路动画：假设走路动作在第2行 */
-.chicken-pet.walking {
-    /* 0px -32px 表示向上偏移32px，显示第二行
-       steps(4) 表示这一行有4帧动作
-    */
-    background-position-y: -32px; 
-    animation: walk-anim 0.4s steps(4) infinite;
-}
-
-/* 站立/休息动画：显示第1行 */
-.chicken-pet.idle {
-    background-position-y: 0px; /* 显示第一行 */
-    animation: none; /* 停止走路动画 */
-}
-
-/* 定义走路的关键帧：从第1帧播到第4帧 */
-@keyframes walk-anim {
-    from { background-position-x: 0px; }
-    to { background-position-x: -128px; }
+/* --- 2. 图片本体：负责显示当前帧 --- */
+.chicken-pet-img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain; /* 保持图片比例 */
+    
+    /* 关键：保持像素画清晰，不模糊 */
+    image-rendering: pixelated; 
+    image-rendering: -moz-crisp-edges;
+    image-rendering: crisp-edges;
+    
+    display: block;
 }
