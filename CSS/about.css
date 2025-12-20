@@ -1,36 +1,96 @@
 body {
-    background-image: url('../imgs/index-imgs/bg.png');
+    /* --- 核心修改：锁定屏幕，禁止滚动 --- */
+    height: 100vh;
+    /* 强制高度为屏幕高度 */
+    overflow: hidden;
+    /* 隐藏滚动条 */
 
-    background-size: 100% 100%;
-    /* 让背景图铺满屏幕，不随滚动条滚动 */
-    background-attachment: fixed;
+    display: flex;
+    /* 使用 Flexbox */
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+
+    /* --- 背景设置保持不变 --- */
+    background-color: #fdf1ce;
+    margin: 0;
+
+    background-image:
+        linear-gradient(to top,
+            rgba(253, 241, 206, 0) 0%,
+            rgba(253, 241, 206, 0.8) 60%,
+            rgba(253, 241, 206, 1) 100%),
+        url('../imgs/about-imgs/about-bg.jpg');
+    /* 你的背景图 */
+
+    background-position: bottom center;
+    background-repeat: no-repeat;
     background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-
-    padding: 40px;
-    color: #522e23;
+    /* 建议改为 cover 以确保填满屏幕 */
 }
 
-/* 页面主体容器：防止被底部导航栏挡住 */
 .page-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding-bottom: 180px;
-    /* 关键：留出底部导航栏的空间 */
-    padding-left: 20px;
-    padding-right: 20px;
+    /* --- 核心修改：移除导致滚动的边距 --- */
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* 再次确保内容居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
+/* 1. 卡片容器：只负责布局和层级，不设置背景 */
 .paper-panel {
-    background-image: url('../imgs/all-imgs/letterBG.png');
-    background-color: transparent;
-    background-size: 100% 100%;
+    position: relative;
+    /* 关键：为了让里面的背景图能定位 */
+    z-index: 1;
+    /* 保证文字在背景上面 */
 
-    background-repeat: no-repeat;
+    width: 85%;
+    /* 卡片宽度 */
+    max-width: 900px;
+    max-height: 85vh;
+    /* 限制高度 */
 
     padding: 40px;
+    border-radius: 15px;
+    /* 圆角 */
 
+    /* 允许内部文字滚动，但隐藏卡片本身的背景 */
+    overflow-y: auto;
+    background: none;
+    /* ⚠️ 清除之前的背景设置 */
+}
+
+/* 2. 背景层：专门的一个“图层”放在文字下面，用来变透明 */
+.paper-panel::before {
+    content: "";
+    position: absolute;
+    /* 绝对定位，铺满父容器 */
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+
+    /*在这里设置你的背景图*/
+    background-image: url('../imgs/all-imgs/letterBG.png');
+    background-size: 100% 100%;
+    /* 拉伸铺满 */
+    background-repeat: no-repeat;
+
+    /* ⚠️ 核心修改：调节透明度 */
+    opacity: 0.7;
+    /* 范围 0.0(全透) ~ 1.0(不透)。建议 0.6 到 0.8 */
+
+    z-index: -1;
+    /* 放在文字层下面 */
+    border-radius: 15px;
+    /* 保持和卡片一样的圆角 */
 }
 
 /* 页面标题 */

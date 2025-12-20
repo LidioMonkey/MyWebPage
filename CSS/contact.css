@@ -1,87 +1,170 @@
-/* 页面主体容器：防止被底部导航栏挡住 */
+body {
+    /* --- 核心修改：锁定屏幕，禁止滚动 --- */
+    height: 100vh;
+    /* 强制高度为屏幕高度 */
+    overflow: hidden;
+    /* 隐藏滚动条 */
+
+    display: flex;
+    /* 使用 Flexbox */
+    justify-content: center;
+    /* 水平居中 */
+    align-items: center;
+    /* 垂直居中 */
+
+    /* --- 背景设置保持不变 --- */
+    background-color: #fdf1ce;
+    margin: 0;
+
+    background-image:
+        linear-gradient(to top,
+            rgba(253, 241, 206, 0) 0%,
+            rgba(253, 241, 206, 0.8) 60%,
+            rgba(253, 241, 206, 1) 100%),
+        url('../imgs/contact-imgs/contact-bg.jpg');
+    /* 你的背景图 */
+
+    background-position: bottom center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* 建议改为 cover 以确保填满屏幕 */
+}
+
 .page-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding-bottom: 180px;
-    /* 关键：留出底部导航栏的空间 */
-    padding-left: 20px;
+    /* --- 核心修改：移除导致滚动的边距 --- */
+    margin: 0;
+    padding: 0;
+
+    width: 100%;
+    height: 100%;
+
+    /* 再次确保内容居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* 1. 卡片容器：只负责布局和层级，不设置背景 */
+/* 1. 修改 .paper-panel：减小内边距，取消滚动条 */
+.paper-panel {
+    position: relative;
+    z-index: 1;
+
+    /* 调整宽度和高度适应内容 */
+    width: 80%;
+    max-width: 850px;
+    height: auto;
+    /* 让高度自动适应，不再强制撑满 */
+    max-height: 90vh;
+    /* 只有实在太高时才限制 */
+
+    /* 减小内边距，腾出空间 */
+    padding: 25px 35px;
+    border-radius: 15px;
+
+    /* 核心修改：隐藏滚动条 */
+    overflow: hidden;
+    background: none;
+
+    /* 确保内容垂直居中 */
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+/* 保持背景层不变，但确保它跟随父元素大小 */
+.paper-panel::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url('../imgs/all-imgs/letterBG.png');
+    background-size: 100% 100%;
+    opacity: 0.8;
+    /*稍微调高不透明度，让文字更清 */
+    z-index: -1;
+    border-radius: 15px;
+}
+
+/* --- 新增：左右分栏布局 --- */
+.split-layout {
+    display: flex;
+    gap: 30px;
+    /* 左右两栏的间距 */
+    align-items: center;
+    /* 垂直居中对齐 */
+    margin-top: 10px;
+}
+
+.left-info {
+    flex: 1;
+    /* 占用 1 份宽度 */
+    font-size: 15px;
+    border-right: 1px solid rgba(139, 69, 19, 0.3);
+    /* 中间加一条淡淡的分割线 */
     padding-right: 20px;
 }
 
-/* 修改 .paper-panel 以适配新的背景图 */
-.paper-panel {
-    /* 1. 背景图片设置 */
-    /* ⚠️ 确保文件名正确，如果在 imgs 文件夹下 */
-    background-image: url('../imgs/all-imgs/file.svg'); 
-    background-size: 100% 100%; /* 拉伸铺满容器 */
-    background-repeat: no-repeat;
-    background-color: transparent; /* 移除原来的背景色 */
-
-    /* 2. 移除旧的边框和阴影 (图片自带了) */
-    border: none;
-    box-shadow: none;
-    border-radius: 0;
-
-    /* 3. 尺寸控制 */
-    width: 100%;
-    max-width: 750px; /* 限制最大宽度，防止图片拉太宽变形 */
-    /* 设定宽高比：根据你的图片形状，约为 1.6 : 1 */
-    /* 这样可以保证不管屏幕多宽，图片比例都不变，文字位置就不会跑偏 */
-    aspect-ratio: 1.6 / 1; 
-    margin: 0 auto;   /* 居中 */
-
-    /* 4. 关键：通过内边距把文字“挤”到中间的白纸上 */
-    /* 上：避开顶部的木头和 "Help Wanted" 标题 */
-    padding-top: 18%;   
-    /* 右：避开右边的木框和紫色/粉色便利贴 */
-    padding-right: 22%; 
-    /* 下：避开底部的撕纸痕迹 */
-    padding-bottom: 15%;
-    /* 左：避开左边的木框和绿色便利贴 */
-    padding-left: 15%;  
-
-    /* 5. 布局设置 */
-    box-sizing: border-box; /* 确保 padding 包含在尺寸内 */
-    display: flex;
-    flex-direction: column;
-    align-items: center;    /* 水平居中 */
-    justify-content: center; /* 垂直居中 */
-    color: #522e23;         /* 文字颜色 */
+.right-form {
+    flex: 1.2;
+    /* 表单稍微宽一点 */
 }
 
-/* 手机适配：在手机上边距要稍微调小一点，保证字能放下 */
-@media (max-width: 768px) {
-    .paper-panel {
-        aspect-ratio: auto; /* 手机上取消固定比例，防止字太多溢出 */
-        min-height: 400px;  /* 保证最小高度 */
-        padding: 100px 60px 80px 60px; /* 手动指定像素边距 */
-        background-size: cover;
-    }
-}
-
-/* 页面标题 */
-.page-title {
-    text-align: center;
-    font-size: 36px;
-    color: #8b4513;
-    border-bottom: 3px dashed #d2b48c;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
-    text-shadow: 2px 2px 0px #fff;
-}
-
-/* --- 告示板 (Contact) 专用 --- */
-.notice-board {
-    background-image: url('../imgs/DialogBoxGreen..png');
-    /* 如果你有这个图，或者复用木板背景 */
-    background-size: cover;
-    padding: 40px;
-    text-align: center;
-    color: #522e23;
-}
-
+/* --- 紧凑列表样式 --- */
 .contact-list {
     list-style: none;
-    font-size: 20px;
-    line-height: 2;
+    padding: 0;
+    margin: 15px 0 0 0;
+    line-height: 1.8;
+    /* 行高调小 */
+}
+
+/* --- 紧凑表单样式 --- */
+.stardew-form {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    /* 控件之间的间距 */
+}
+
+.input-row {
+    display: flex;
+    gap: 10px;
+    /* 名字和邮箱之间的间距 */
+}
+
+.stardew-form input,
+.stardew-form textarea {
+    width: 100%;
+    background-color: rgba(255, 255, 255, 0.5);
+    border: 2px solid #8b4513;
+    border-radius: 4px;
+    padding: 8px;
+    /* 减小输入框内边距 */
+    font-family: inherit;
+    font-size: 14px;
+    outline: none;
+    box-sizing: border-box;
+    /* 关键：防止宽度溢出 */
+}
+
+/* 按钮样式 */
+.pixel-btn {
+    width: 100%;
+    /* 按钮充满宽度 */
+    padding: 8px 0;
+    background: #fff;
+    border: 2px solid #522e23;
+    font-weight: bold;
+    cursor: pointer;
+    color: #522e23;
+    box-shadow: 0 3px 0 #8b4513;
+    transition: transform 0.1s;
+}
+
+.pixel-btn:active {
+    box-shadow: 0 0 0 #8b4513;
+    transform: translateY(3px);
 }

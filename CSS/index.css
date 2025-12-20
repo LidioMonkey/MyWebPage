@@ -188,13 +188,7 @@ header.bottom-nav {
     padding: 70px;
     display: block;
     /* 块级显示 */
-    
-}
 
-/* 基地 - 图标 */
-.icon-home::before {
-    background-image: url('../imgs/icon/icon-home.png');
-    /* 换成你的图片路径 */
 }
 
 /* 角色档案 - 图标 */
@@ -209,11 +203,6 @@ header.bottom-nav {
     /* 换成你的图片路径 */
 }
 
-/* 训练场 - 图标 */
-.icon-game::before {
-    background-image: url('../imgs/icon/icon-game.png');
-    /* 换成你的图片路径 */
-}
 
 /* 告示板 - 图标 */
 .icon-contact::before {
@@ -233,9 +222,51 @@ header.bottom-nav {
 }
 
 .header-logo img {
-    max-width: 600px;
+    max-width: 800px;
     width: 100%;
     display: block;
+}
+
+/* 音乐按钮容器 */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    left: 20px;
+    z-index: 1000;
+
+    width: 24px;
+    height: 24px;
+
+    /* 1. 默认状态：显示静音/关闭图标 */
+    background-image: url('../imgs/music-controll/music-off.png');
+    background-size: contain;
+    /* 让图片完整显示在框内 */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* 2. 鼠标样式 (保持你之前的小手样式) */
+    cursor: url('../imgs/cursor/cursor-hand.png'), pointer;
+
+    transition: transform 0.1s;
+    /* 添加一点点击的动效 */
+}
+
+/* 鼠标悬停效果 (可选) */
+.music-btn:hover {
+    transform: scale(1.1);
+    /* 悬停时稍微变大 */
+}
+
+/* 点击效果 */
+.music-btn:active {
+    transform: scale(0.95);
+    /* 点击时按下 */
+}
+
+/* --- 核心：播放状态 --- */
+/* 当 JavaScript 给它加上 .playing 类名时，切换图片 */
+.music-btn.playing {
+    background-image: url('../imgs/music-controll/music-on.png');
 }
 
 @keyframes float {
@@ -334,46 +365,6 @@ header.bottom-nav {
     line-height: 1.6;
     font-weight: bold;
     font-size: 18px;
-}
-
-.music-btn {
-    position: fixed;
-    top: 20px;
-    left: 20px;
-    z-index: 1000;
-
-    /* 按钮外观 */
-    width: 60px;
-    height: 60px;
-    background-color: #ffcd82;
-    border: 3px solid #8B4513;
-    box-shadow:
-        inset 3px 3px 0px rgba(255, 255, 255, 0.4),
-        inset -3px -3px 0px rgba(0, 0, 0, 0.2),
-        2px 2px 0px rgba(0, 0, 0, 0.3);
-    border-radius: 8px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
-}
-
-.music-btn:active {
-    transform: translateY(2px);
-    box-shadow: none;
-}
-
-/* 按钮内的小鸡图标 */
-.music-icon {
-    font-size: 30px;
-}
-
-/* 播放状态样式 */
-.music-btn.playing {
-    background-color: #ffd699;
-    border-color: #d94a38;
-    /* 播放时边框变红 */
 }
 
 @keyframes bounce {

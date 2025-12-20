@@ -1,0 +1,65 @@
+/* 容器：负责居中 */
+.star-anim-container {
+    display: flex;
+    justify-content: center;
+    width: 100%;
+    margin-bottom: 5px;
+    /* 稍微留点空隙 */
+}
+
+/* 星星本体 */
+.pixel-star {
+    /* --- 请根据你单张图片的实际大小修改这里 --- */
+    width: 32px;
+    height: 32px;
+
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+
+    /* 0.8s = 转一圈的时间，想快点就改小 (比如 0.6s)
+       infinite = 无限循环
+       linear = 匀速（但在切换图片时是瞬间的）
+    */
+    animation: starRotate 0.8s infinite linear;
+}
+
+/* 动画关键帧：负责切换 8 张图片 */
+/* 原理：100% 除以 8帧 = 12.5%，所以每隔 12.5% 换一张图 */
+@keyframes starRotate {
+    0% {
+        background-image: url('../imgs/star/tile_1_1.png');
+    }
+
+    12.5% {
+        background-image: url('../imgs/star/tile_1_2.png');
+    }
+
+    25% {
+        background-image: url('../imgs/star/tile_1_3.png');
+    }
+
+    37.5% {
+        background-image: url('../imgs/star/tile_1_4.png');
+    }
+
+    50% {
+        background-image: url('../imgs/star/tile_1_5.png');
+    }
+
+    62.5% {
+        background-image: url('../imgs/star/tile_1_6.png');
+    }
+
+    75% {
+        background-image: url('../imgs/star/tile_1_7.png');
+    }
+
+    87.5% {
+        background-image: url('../imgs/star/tile_1_8.png');
+    }
+
+    100% {
+        background-image: url('../imgs/star/tile_1_1.png');
+    }
+}

@@ -1,0 +1,57 @@
+.control-hint {
+    position: absolute;
+    top: -50px;
+    /* 在小人头顶 */
+    left: 50%;
+    transform: translateX(-50%);
+    background: rgba(0, 0, 0, 0.6);
+    color: #fff;
+    padding: 5px 10px;
+    border-radius: 5px;
+    font-size: 12px;
+    white-space: nowrap;
+    text-align: center;
+    pointer-events: none;
+    opacity: 0;
+    /* 默认隐藏 */
+    transition: opacity 0.3s;
+}
+
+/* 当鼠标悬停在小人身上时，显示提示 */
+#pixel-char-container:hover .control-hint {
+    opacity: 1;
+}
+
+/* =========================================
+   底部像素小人控制
+   ========================================= */
+#pixel-char-container {
+    position: fixed;
+    bottom: 20px;
+    /* 距离底部的距离，根据需要调整 */
+    left: 50%;
+    /* 初始位置：屏幕中间 */
+    transform: translateX(-50%);
+    /* 修正居中偏移 */
+    z-index: 3000;
+    /* 保证层级最高，遮挡住背景和卡片 */
+
+    /* 根据你的图片大小调整容器尺寸 */
+    width: 64px;
+    height: auto;
+
+    /* 初始不显示，等待JS加载，或者你可以去掉这行 */
+    /* display: none; */
+}
+
+#pixel-char {
+    width: 100%;
+    /* 撑满容器 */
+    display: block;
+
+    /* ⚠️ 关键：像素化渲染，防止图片变模糊 */
+    image-rendering: pixelated;
+
+    /* 增加一个投影，更有立体感 */
+    filter: drop-shadow(0 5px 5px rgba(0, 0, 0, 0.5));
+}

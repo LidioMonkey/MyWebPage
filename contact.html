@@ -13,26 +13,38 @@
 
     <div class="page-wrapper">
         <div class="paper-panel">
+            <h2
+                style="margin-top: 0; color: #522e23; text-align: center; border-bottom: 2px dashed #8b4513; padding-bottom: 10px;">
+                联系与委托 (Contact)
+            </h2>
 
-            <div class="content-area">
-                <p>如果你有有趣的项目，或者只是想聊聊最新的收成，请联系我！</p>
-                <br>
-                <p><strong>报酬：</strong> 诚挚的感谢 (100g)</p>
+            <div class="split-layout">
 
-                <hr style="border: 1px dashed #8b4513; opacity: 0.5; margin: 10px 0;">
+                <div class="left-info">
+                    <p style="margin-bottom: 10px;">如果你有有趣的项目，或者只是想聊聊最新的收成，请联系我！</p>
+                    <p style="font-size: 0.9em; color: #664;"><strong>报酬：</strong> 诚挚的感谢 (100g)</p>
 
-                <ul class="contact-list" style="text-align: left; font-size: 16px;">
-                    <li>📧 邮箱: yourname@email.com</li>
-                    <li>🐙 GitHub: github.com/yourname</li>
-                    <li>💬 微信: YourWeChatID</li>
-                </ul>
-            </div>
+                    <ul class="contact-list">
+                        <li>📧 yourname@email.com</li>
+                        <li>🐙 github.com/yourname</li>
+                        <li>💬 Wechat: YourID</li>
+                    </ul>
+                </div>
 
-            <div style="margin-top: 20px;">
-                <button
-                    style="padding: 8px 16px; cursor: pointer; background: #fff; border: 2px solid #522e23; font-weight: bold;">
-                    接受任务 (发送邮件)
-                </button>
+                <div class="right-form">
+                    <form class="stardew-form" action="#" method="POST">
+                        <div class="input-row">
+                            <input type="text" name="name" placeholder="你的名字" required>
+                            <input type="email" name="email" placeholder="联系邮箱" required>
+                        </div>
+
+                        <textarea name="message" rows="3" placeholder="在此写下委托内容..." required></textarea>
+
+                        <button type="submit" class="pixel-btn">
+                            发送信件 (Send)
+                        </button>
+                    </form>
+                </div>
             </div>
         </div>
     </div>

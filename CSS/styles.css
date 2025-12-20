@@ -1,3 +1,25 @@
+/* 1. 设置全局默认鼠标样式 */
+body {
+    /* url: 图片路径 (注意：CSS里的路径是相对于CSS文件的，所以用 ../ 返回上一级)
+       auto: 如果图片加载失败，使用系统默认样式 (必须写，否则不生效)
+    */
+    cursor: url('../imgs/cursor/cursor.png'), auto;
+}
+
+/* 2. 设置按钮、链接、输入框的鼠标样式 (变成小手) */
+a,
+button,
+.pixel-btn,
+input[type="submit"],
+.back-home-img-btn,
+.music-btn,
+.music-icon,
+.back-home-img-btn {
+    /* pointer: 标准的小手样式作为备选
+    */
+    cursor: url('../imgs/cursor/cursor-hand.png'), pointer;
+}
+
 .back-home-img-btn {
     position: fixed;
     bottom: 100px;
@@ -8,12 +30,10 @@
     /* 确保在最上层 */
     display: block;
     /* 让链接变成块级元素，这样才能设置宽高 */
-    cursor: pointer;
 
     width: 150px;
     height: 100px;
 
-    /* ⚠️【重要修改】请替换为你正常状态图片的路径 */
     background-image: url('../imgs/backbotton/back-btn.png');
 
     background-size: contain;
@@ -27,11 +47,7 @@
 
 /* 鼠标悬停时的状态 */
 .back-home-img-btn:hover {
-    /* ⚠️【重要修改】请替换为你悬停状态 (hover) 图片的路径 */
-    background-image: url('../imgs/backbotton/back-hover-on.png');
-
-    /* 可选：悬停时稍微放大一点点，更有交互感 */
-    transform: scale(1.05);
+    background-image: url('../imgs/backbotton/back-btn-hover-on.png');
 }
 
 /* 点击时的状态 (可选) */

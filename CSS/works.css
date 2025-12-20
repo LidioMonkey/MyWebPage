@@ -1,67 +1,187 @@
-/* 页面主体容器：防止被底部导航栏挡住 */
-.page-wrapper {
-    max-width: 1000px;
-    margin: 40px auto;
-    padding-bottom: 180px;
-    /* 关键：留出底部导航栏的空间 */
-    padding-left: 20px;
-    padding-right: 20px;
+/* works.css */
+
+/* 1. 全局设置：锁定高度，禁止溢出 */
+* {
+    box-sizing: border-box;
 }
 
-/* 纸张风格面板 (类似游戏菜单) */
+html,
+body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    height: 100vh;
+    /* 强制高度为视口高度 */
+    overflow: hidden;
+    /* 关键：禁止任何页面的上下滚动 */
+    line-height: 1.6;
+    font-family: 'Courier New', Courier, monospace;
+    /* 建议加个复古字体 */
+}
+
+body {
+    /* 背景图设置 */
+    background-image: url('../imgs/works-imgs/works-bg.jpeg');
+    background-repeat: no-repeat;
+    background-position: center center;
+    background-size: cover;
+}
+
+/* 2. 页面容器：负责垂直和水平居中 */
+.page-wrapper {
+    width: 100%;
+    height: 100%;
+    /* 占满全屏 */
+
+    /* 使用 Flexbox 将纸板完全居中 */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+    /* 移除之前的 padding，因为不需要避让底部栏了（假设底部栏是悬浮的） */
+    padding: 20px;
+}
+
+/* 3. 羊皮纸面板：作为主要显示区域 */
 .paper-panel {
-    background-color: #fdf1ce;
-    /* 羊皮纸颜色 */
-    border: 4px solid #b97a57;
-    /* 深色边框 */
-    box-shadow:
-        inset 0 0 20px rgba(139, 69, 19, 0.2),
-        /* 内部旧纸质感 */
-        0 0 0 4px #522e23,
-        /* 外层深褐色轮廓 */
-        10px 10px 0 rgba(0, 0, 0, 0.5);
-    /* 投影 */
-    border-radius: 4px;
-    padding: 40px;
+
+
+    padding: 20px 40px;
     color: #522e23;
+
+    /* 限制面板最大高度，防止撑破屏幕 */
+    width: 95%;
+    /* 宽度很宽 */
+    max-height: 90vh;
+    /* 高度最多占屏幕 90% */
+
+    display: flex;
+    flex-direction: column;
+    /* 标题在上，内容在下 */
 }
 
 /* 页面标题 */
 .page-title {
     text-align: center;
-    font-size: 36px;
+    font-size: 32px;
     color: #8b4513;
     border-bottom: 3px dashed #d2b48c;
-    padding-bottom: 20px;
-    margin-bottom: 30px;
+    padding-bottom: 10px;
+    margin-bottom: 10px;
+    margin-top: 0px;
     text-shadow: 2px 2px 0px #fff;
+    flex-shrink: 0;
+    /* 防止标题被压缩 */
 }
 
-
-/* --- 作品集 (Works) 专用 --- */
+/* 4. 作品容器：横向排列 (Horizontal Scroll) */
 .works-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    display: flex;
+    /* 变成弹性盒子，横向排列 */
+    flex-direction: row;
+    align-items: center;
+    /* 垂直居中对齐 */
     gap: 30px;
+
+    /* 核心逻辑：如果内容少，居中；如果内容多，横向滚动 */
+    justify-content: center;
+    overflow-x: auto;
+    /* 允许横向滑动 */
+    overflow-y: hidden;
+    /* 禁止纵向滑动 */
+
+    padding: 10px 5px 20px 5px;
+    /* 底部留点空隙给滚动条（如果出现的话） */
+    height: 100%;
+    /* 占满面板剩余高度 */
 }
 
+/* 美化横向滚动条 (Webkit浏览器) */
+.works-grid::-webkit-scrollbar {
+    height: 8px;
+}
+
+.works-grid::-webkit-scrollbar-track {
+    background: #e0cca7;
+    border-radius: 4px;
+}
+
+.works-grid::-webkit-scrollbar-thumb {
+    background: #8b4513;
+    border-radius: 4px;
+}
+
+/* 5. 木板卡片样式 */
 .work-card {
-    background: #fff;
-    border: 2px solid #8b4513;
-    padding: 15px;
+    width: 450px;
+    height: 300px;
+
+    /* 背景图：木板 */
+    background-image: url('../imgs/works-imgs/board-card.png');
+    background-size: 100% 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+
+    /* 内边距 */
+    padding: 45px 35px 35px 35px;
+
+    /* 布局 */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+
     transition: transform 0.2s;
+    /* 防止卡片自身产生滚动条 */
+    flex-shrink: 0;
 }
 
 .work-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 5px 5px 0 rgba(0, 0, 0, 0.2);
+    transform: translateY(-5px) scale(1.02);
+    filter: drop-shadow(0 10px 5px rgba(0, 0, 0, 0.3));
+    z-index: 10;
+    /* 鼠标悬停时层级提高 */
 }
 
 .work-card img {
-    width: 100%;
-    height: 180px;
+    width: 70%;
+    height: 100px;
+    /* 稍微改小一点以适应一屏 */
     object-fit: cover;
-    border-bottom: 2px solid #eee;
+    border: 2px solid #5e3a28;
+    border-radius: 2px;
     margin-bottom: 10px;
     image-rendering: pixelated;
+    background-color: #000;
+}
+
+.work-card h3 {
+    margin: 5px 0;
+    color: #3e2723;
+    font-size: 1.2rem;
+    font-weight: 800;
+    text-shadow: 1px 1px 0px #d7ccc8;
+}
+
+.work-card p {
+    font-size: 0.85rem;
+    /* 字体稍微调小 */
+    color: #4e342e;
+    font-weight: 600;
+    margin-bottom: 10px;
+
+    /* 限制文字行数，防止太长 */
+    display: -webkit-box;
+    line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+}
+
+.work-card a {
+    color: #bf360c;
+    font-weight: bold;
+    text-decoration: none;
+    margin-top: auto;
+    border-bottom: 1px dashed #bf360c;
+    font-size: 0.9rem;
 }
