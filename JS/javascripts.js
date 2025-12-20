@@ -1,9 +1,3 @@
-// 1. 动态内容：打字机效果 [cite: 22]
-const titles = ["正在寻找实习...", "热衷于像素艺术...", "Bug 制造者 (划掉)...", "全栈开发练习生"];
-let tIndex = 0;
-let charIndex = 0;
-const typeWriterSpan = document.getElementById("typewriter");
-
 // 音乐播放控制逻辑
 const music = document.getElementById('bgm');
 const btn = document.querySelector('.music-btn');

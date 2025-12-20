@@ -67,11 +67,20 @@ body {
     color: #8b4513;
     border-bottom: 3px dashed #d2b48c;
     padding-bottom: 10px;
-    margin-bottom: 10px;
     margin-top: 0px;
-    text-shadow: 2px 2px 0px #fff;
+    text-shadow: 2px 2px 0px #927b2f;
     flex-shrink: 0;
     /* 防止标题被压缩 */
+}
+
+.page-intr {
+    text-align: center;
+    font-size: 16px;
+    font-style: bold;
+    color: #181716;
+    margin: 15px 0 25px 0;
+    flex-shrink: 0;
+    /* 防止简介被压缩 */
 }
 
 /* 4. 作品容器：横向排列 (Horizontal Scroll) */
@@ -96,34 +105,18 @@ body {
     /* 占满面板剩余高度 */
 }
 
-/* 美化横向滚动条 (Webkit浏览器) */
-.works-grid::-webkit-scrollbar {
-    height: 8px;
-}
-
-.works-grid::-webkit-scrollbar-track {
-    background: #e0cca7;
-    border-radius: 4px;
-}
-
-.works-grid::-webkit-scrollbar-thumb {
-    background: #8b4513;
-    border-radius: 4px;
-}
-
-/* 5. 木板卡片样式 */
 .work-card {
-    width: 450px;
-    height: 300px;
+    width: 600px;
+    height: 430px;
 
-    /* 背景图：木板 */
     background-image: url('../imgs/works-imgs/board-card.png');
     background-size: 100% 100%;
     background-repeat: no-repeat;
     background-color: transparent;
+    position: relative;
 
     /* 内边距 */
-    padding: 45px 35px 35px 35px;
+    padding: 55px 35px 35px 35px;
 
     /* 布局 */
     display: flex;
@@ -145,8 +138,7 @@ body {
 
 .work-card img {
     width: 70%;
-    height: 100px;
-    /* 稍微改小一点以适应一屏 */
+    height: 190px;
     object-fit: cover;
     border: 2px solid #5e3a28;
     border-radius: 2px;
@@ -156,7 +148,15 @@ body {
 }
 
 .work-card h3 {
-    margin: 5px 0;
+    /* 核心定位代码 */
+    position: absolute;
+    /* 绝对定位：脱离文档流，悬浮在上方 */
+    top: 9px;
+    /* 距离顶部的高度 */
+    left: 0;
+    width: 100%;
+    text-align: center;
+    margin: 0;
     color: #3e2723;
     font-size: 1.2rem;
     font-weight: 800;
@@ -164,24 +164,71 @@ body {
 }
 
 .work-card p {
-    font-size: 0.85rem;
-    /* 字体稍微调小 */
+    font-size: 1rem;
     color: #4e342e;
-    font-weight: 600;
-    margin-bottom: 10px;
+    font-weight: 800;
+    margin-bottom: 1px;
 
-    /* 限制文字行数，防止太长 */
     display: -webkit-box;
     line-clamp: 3;
     -webkit-box-orient: vertical;
-    overflow: hidden;
+    
 }
 
 .work-card a {
     color: #bf360c;
     font-weight: bold;
     text-decoration: none;
-    margin-top: auto;
+    margin-top: 5px;
     border-bottom: 1px dashed #bf360c;
     font-size: 0.9rem;
+}
+
+.back-home-img-btn-works {
+    position: fixed;
+    bottom: 5px;
+    /* 距离底部的位置 */
+    right: 40px;
+    /* 距离右侧的位置 */
+    z-index: 2000;
+    /* 确保在最上层 */
+    display: block;
+    /* 让链接变成块级元素，这样才能设置宽高 */
+
+    width: 150px;
+    height: 100px;
+
+    background-image: url('../imgs/backbotton/back-btn.png');
+
+    background-size: contain;
+    /* 确保图片完整显示在框内 */
+    background-repeat: no-repeat;
+    background-position: center;
+
+    /* 添加一点平滑过渡效果 */
+    transition: all 0.1s ease-in-out;
+}
+
+/* 鼠标悬停时的状态 */
+.back-home-img-btn-works:hover {
+    background-image: url('../imgs/backbotton/back-btn-hover-on.png');
+}
+
+/* 点击时的状态 (可选) */
+.back-home-img-btn-works:active {
+    transform: scale(0.95);
+    /* 点击时稍微缩小，模拟按压感 */
+}
+
+/* --- 手机端适配 --- */
+@media (max-width: 768px) {
+    .back-home-img-btn-works {
+        /* 手机上底部有导航栏，需要把按钮往上抬，防止被挡住 */
+        bottom: 100px;
+        right: 20px;
+
+        /* 如果图片在手机上太大，可以在这里缩小一点 */
+        /* width: 48px; */
+        /* height: 48px; */
+    }
 }

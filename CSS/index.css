@@ -64,12 +64,10 @@ header.bottom-nav {
 /* 1. 容器样式：让导航横向排列 */
 .nav-links {
     list-style: none;
-    /* 去除默认列表圆点 */
     padding: 0;
-    margin: 20px;
+    margin: 0;
     display: flex;
-    /* 使用 Flex 布局 */
-    gap: 70px;
+    gap: 160px;
     /* 按钮之间的间距 */
     justify-content: center;
     /* 居中显示 */
@@ -84,13 +82,8 @@ header.bottom-nav {
     background-size: 100% 100%;
     /* 让图片充满整个容器 */
     background-repeat: no-repeat;
-
-    /* --- 尺寸与内边距 --- */
-    /* 根据背景图的比例设置合适的宽高 */
     width: 200px;
     height: 100px;
-    /* 设置内边距，确保文字不会压到木牌的边框上 */
-    /* 上 右 下 左 */
     padding: 12px 15px 15px 15px;
     box-sizing: border-box;
     /* 确保 padding 不会撑大盒子 */
@@ -284,10 +277,8 @@ header.bottom-nav {
 /* --- 3. 个人介绍卡片 (DialogBox) --- */
 .intro-container {
     position: absolute;
-    /* 绝对定位：脱离文档流，浮起来 */
-    top: 40%;
-    /* 垂直位置：父容器的一半 */
-    left: 60%;
+    top: 50%;
+    left: 50%;
     /* 水平位置：父容器的一半 */
     transform: translate(-50%, -50%);
     /* 向左上回退自身的一半，实现完美居中 */

@@ -121,6 +121,19 @@ body {
     /* 行高调小 */
 }
 
+.contact-list li {
+    margin-bottom: 8px;
+}   
+
+.contact-list a {
+    color: #522e23;
+    text-decoration: none;
+}
+
+.contact-list a:hover {
+    text-decoration: underline;
+}
+
 /* --- 紧凑表单样式 --- */
 .stardew-form {
     display: flex;
