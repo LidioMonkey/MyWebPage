@@ -21,19 +21,32 @@
             <div class="split-layout">
 
                 <div class="left-info">
-                    <p style="margin-bottom: 10px;">If you have an interesting project, or just want to chat about the
+                    <p style="margin-bottom: 20px;">If you have an interesting project, or just want to chat about the
                         latest harvest, feel free to reach out!</p>
 
                     <ul class="contact-list">
-                        <li>📧 lidio20050426@gmail.com</li>
-                        <li><a href="https://github.com/LidioMonkey" target="_blank"
-                                rel="noopener noreferrer">🐙github.com/LidioMonkey</a></li>
-                        <li>💬 Wechat: h13363031286</li>
+                        <li>
+                            <img src="./imgs/contact-imgs/gmail-icon.png" alt="Email" class="contact-icon">
+                            <span>lidio20050426@gmail.com</span>
+                        </li>
+
+                        <li>
+                            <a href="https://github.com/LidioMonkey" target="_blank" rel="noopener noreferrer"
+                                class="icon-link">
+                                <img src="./imgs/contact-imgs/github-icon.png" alt="Github" class="contact-icon">
+                                <span>github.com/LidioMonkey</span>
+                            </a>
+                        </li>
+
+                        <li>
+                            <img src="./imgs/contact-imgs/wechat-icon.png" alt="Wechat" class="contact-icon">
+                            <span>Wechat: h13363031286</span>
+                        </li>
                     </ul>
                 </div>
 
                 <div class="right-form">
-                    <form class="stardew-form" action="#" method="POST">
+                    <form class="stardew-form" id="contactForm">
                         <div class="input-row">
                             <input type="text" name="name" placeholder="your name" required>
                             <input type="email" name="email" placeholder="contact email" required>
@@ -42,7 +55,7 @@
                         <textarea name="message" rows="3" placeholder="your message about the task..."
                             required></textarea>
 
-                        <button type="submit" class="pixel-btn"> Send Message</button>
+                        <button type="submit" class="pixel-btn">Send Message</button>
                     </form>
                 </div>
             </div>
@@ -50,6 +63,7 @@
     </div>
 
     <a href="index.html" class="back-home-img-btn" title="返回主页"></a>
+    <script src="./JS/javascripts.js"></script>
 </body>
 
 </html>

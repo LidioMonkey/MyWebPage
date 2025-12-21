@@ -19,3 +19,16 @@ function toggleMusic() {
     }
 }
 
+document.getElementById('contactForm').addEventListener('submit', function (event) {
+    // 1. 阻止表单默认的提交刷新行为
+    event.preventDefault();
+
+    // 2. 获取用户输入（可选，如果需要显示名字）
+    const name = this.querySelector('input[name="name"]').value;
+
+    // 3. 弹出一个模拟成功的提示框 (Stardew Valley 风格的文案)
+    alert(`Thanks, ${name}! \nYour message has been sent to the valley.\nI'll get back to you soon! 📨`);
+
+    // 4. 清空表单
+    this.reset();
+});

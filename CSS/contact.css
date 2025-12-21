@@ -123,11 +123,18 @@ body {
 
 .contact-list li {
     margin-bottom: 8px;
-}   
+}
 
 .contact-list a {
     color: #522e23;
     text-decoration: none;
+}
+
+img.contact-icon {
+    width: 60px;
+    height: 60px;
+    vertical-align: middle;
+    margin-right: 8px;
 }
 
 .contact-list a:hover {
