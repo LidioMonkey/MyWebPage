@@ -1,19 +1,11 @@
 body {
-    /* --- 核心修改：锁定屏幕，禁止滚动 --- */
     height: 100vh;
-    /* 强制高度为屏幕高度 */
     overflow: hidden;
-    /* 隐藏滚动条 */
-
     display: flex;
-    /* 使用 Flexbox */
     justify-content: center;
     /* 水平居中 */
     align-items: center;
     /* 垂直居中 */
-
-    /* --- 背景设置保持不变 --- */
-    background-color: #fdf1ce;
     margin: 0;
 
     background-image:
@@ -22,16 +14,14 @@ body {
             rgba(253, 241, 206, 0.8) 60%,
             rgba(253, 241, 206, 1) 100%),
         url('../imgs/about-imgs/about-bg.jpg');
-    /* 你的背景图 */
+    image-rendering: pixelated;
 
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* 建议改为 cover 以确保填满屏幕 */
 }
 
 .page-wrapper {
-    /* --- 核心修改：移除导致滚动的边距 --- */
     margin: 0;
     padding: 0;
 
@@ -47,15 +37,12 @@ body {
 /* 1. 卡片容器：只负责布局和层级，不设置背景 */
 .paper-panel {
     position: relative;
-    /* 关键：为了让里面的背景图能定位 */
     z-index: 1;
     /* 保证文字在背景上面 */
-
     width: 85%;
     /* 卡片宽度 */
     max-width: 900px;
     max-height: 85vh;
-    /* 限制高度 */
 
     padding: 40px;
     border-radius: 15px;
@@ -64,10 +51,8 @@ body {
     /* 允许内部文字滚动，但隐藏卡片本身的背景 */
     overflow-y: auto;
     background: none;
-    /* ⚠️ 清除之前的背景设置 */
 }
 
-/* 2. 背景层：专门的一个“图层”放在文字下面，用来变透明 */
 .paper-panel::before {
     content: "";
     position: absolute;
@@ -77,15 +62,12 @@ body {
     right: 0;
     bottom: 0;
 
-    /*在这里设置你的背景图*/
     background-image: url('../imgs/all-imgs/letterBG.png');
+    image-rendering: pixelated;
     background-size: 100% 100%;
-    /* 拉伸铺满 */
     background-repeat: no-repeat;
 
-    /* ⚠️ 核心修改：调节透明度 */
-    opacity: 0.7;
-    /* 范围 0.0(全透) ~ 1.0(不透)。建议 0.6 到 0.8 */
+    opacity: 0.5;
 
     z-index: -1;
     /* 放在文字层下面 */
@@ -93,7 +75,6 @@ body {
     /* 保持和卡片一样的圆角 */
 }
 
-/* 页面标题 */
 .page-title {
     text-align: center;
     font-size: 36px;
@@ -104,7 +85,6 @@ body {
     text-shadow: 2px 2px 0px #fff;
 }
 
-/* --- 角色档案 (About) 专用 --- */
 .profile-layout {
     display: flex;
     gap: 40px;
@@ -126,8 +106,6 @@ body {
     min-width: 300px;
 }
 
-
-
 .avatar {
     width: 150px;
     height: 150px;
@@ -143,7 +121,6 @@ body {
     height: 100%;
     object-fit: cover;
 }
-
 
 /* 技能条样式 */
 .skill-item {
@@ -166,22 +143,24 @@ body {
 
 .progress-bar-fill {
     background: #76c356;
-    /* 经验条绿色 */
     height: 100%;
     width: 0%;
-    /* 初始宽度 */
     transition: width 1s ease;
 }
 
-/* --- 手机端适配 --- */
-@media (max-width: 768px) {
-    .back-home-img-btn {
-        /* 手机上底部有导航栏，需要把按钮往上抬，防止被挡住 */
-        bottom: 100px;
-        right: 20px;
+#HTML {
+    width: 70%;
+}
 
-        /* 如果图片在手机上太大，可以在这里缩小一点 */
-        /* width: 48px; */
-        /* height: 48px; */
-    }
+#SpringBoot {
+    width: 75%;
+}
+
+#Python {
+    width: 60%;
+}
+
+.line {
+    border: 1px dashed #b97a57;
+    margin: 20px 0;
 }

@@ -9,7 +9,6 @@
 
 /* 星星本体 */
 .pixel-star {
-    /* --- 请根据你单张图片的实际大小修改这里 --- */
     width: 32px;
     height: 32px;
 
@@ -17,11 +16,11 @@
     background-size: contain;
     background-position: center;
 
-    /* 0.8s = 转一圈的时间，想快点就改小 (比如 0.6s)
+    /* 0.8s = 转一圈的时间
        infinite = 无限循环
        linear = 匀速（但在切换图片时是瞬间的）
     */
-    animation: starRotate 0.8s infinite linear;
+    animation: starRotate 1s infinite linear;
 }
 
 /* 动画关键帧：负责切换 8 张图片 */

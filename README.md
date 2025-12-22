@@ -54,44 +54,6 @@ A charming, pixel-art styled personal portfolio website inspired by the popular 
 - **JavaScript**: Interactive functionality and animations
 - **Pixel Art**: Custom graphics and sprite animations
 
-### File Structure
-```
-MyWebPage/
-├── index.html          # Main homepage
-├── about.html          # About me page
-├── works.html          # Projects showcase
-├── contact.html        # Contact page
-├── README.md           # Project documentation
-├── CSS/
-│   ├── styles.css      # Global styles and cursor
-│   ├── index.css       # Homepage styles
-│   ├── about.css       # About page styles
-│   ├── works.css       # Works page styles
-│   ├── contact.css     # Contact page styles
-│   ├── chicken-pet.css # Chicken animation styles
-│   ├── Abigail.css     # Abigail character styles
-│   └── star.css        # Star animation styles
-├── JS/
-│   ├── javascripts.js  # Main JavaScript functions
-│   ├── chicken-pet.js  # Chicken pet animations
-│   └── Abigail.js      # Abigail character interactions
-├── imgs/               # All image assets
-│   ├── avatar/         # Profile images
-│   ├── cursor/         # Custom cursor icons
-│   ├── chicken-pet/    # Chicken animation sprites
-│   ├── Abigail/        # Abigail character sprites
-│   ├── works-imgs/     # Project screenshots/GIFs
-│   ├── index-imgs/     # Homepage images
-│   ├── about-imgs/     # About page images
-│   ├── contact-imgs/   # Contact page images
-│   ├── music-controll/ # Music control icons
-│   ├── backbotton/     # Back button images
-│   ├── icon/           # Navigation icons
-│   ├── star/           # Star animation sprites
-│   └── all-imgs/       # Shared images
-└── music/              # Audio files
-    └── ConcernedApe - Stardew Valley Overture.mp3
-```
 
 ## 🎮 Interactive Features
 

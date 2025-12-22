@@ -1,10 +1,7 @@
-/* JS/character-control.js - 自动随机行为版 */
-
 document.addEventListener('DOMContentLoaded', () => {
     const charContainer = document.getElementById('pixel-char-container');
     const charImg = document.getElementById('pixel-char');
 
-    // ================= 配置区域 =================
     const assets = {
         right: [
             './imgs/Abigail/right/tile_2_1.png',
@@ -32,11 +29,11 @@ document.addEventListener('DOMContentLoaded', () => {
     };
 
     // 参数设置
-    const walkSpeed = 2;       // 走路速度 (慢一点比较悠闲)
-    const animSpeed = 200;     // 动画帧切换速度 (毫秒)
+    const walkSpeed = 2;       // 走路速度一帧两个像素
+    const animSpeed = 200;     // 动画帧切换速度
 
     // 状态变量
-    let posX = window.innerWidth / 2; // 初始位置
+    let posX = window.innerWidth / 5 * 4; // 初始位置
     let direction = 'right';          // 当前朝向
     let currentState = 'idle';        // 当前状态: idle, walk, act
 
@@ -44,16 +41,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let animInterval = null;
     let behaviorTimeout = null;
     let moveFrameId = null;
-
-    // ================= 核心功能函数 =================
-
-    // 1. 更新位置 (渲染)
+    // 1. 更新位置
     function updateRender() {
         charContainer.style.left = posX + 'px';
         charContainer.style.transform = 'translateX(-50%)'; // 居中锚点
     }
 
-    // 2. 播放动画帧 (通用)
+    // 2. 播放动画帧
     function playAnim(key) {
         if (animInterval) clearInterval(animInterval);
 
@@ -72,21 +66,17 @@ document.addEventListener('DOMContentLoaded', () => {
         }
     }
 
-    // 3. 停止所有动作 (变回站立)
+    // 3. 停止所有动作
     function stopAll() {
         if (animInterval) clearInterval(animInterval);
         if (moveFrameId) cancelAnimationFrame(moveFrameId);
         currentState = 'idle';
-        // 显示当前朝向的第一帧（站立图）
+        // 显示当前朝向的第一帧
         charImg.src = assets[direction][0];
     }
-
-    // ================= AI 行为逻辑 (大脑) =================
-
     function decideNextMove() {
         // 如果正在进行某种强制动作，暂不决策
         // 这里我们设计每次决策都会设定一个持续时间，时间到了再做下一次决策
-
         stopAll(); // 先停下当前的事
 
         // 🎲 随机数决定下一步做什么 (0.0 ~ 1.0)
@@ -94,19 +84,19 @@ document.addEventListener('DOMContentLoaded', () => {
 
         // --- 行为权重分配 ---
         // 40% 几率：走路
-        // 30% 几率：发呆 (站立)
-        // 30% 几率：特殊动作 (大笑/震惊/演奏)
+        // 30% 几率：发呆站立
+        // 30% 几率：大笑/震惊/演奏
 
         if (rand < 0.4) {
-            // === 走路 ===
+            // 走路
             doWalk();
         } else if (rand < 0.7) {
-            // === 发呆 ===
+            // 发呆
             const waitTime = randomRange(1000, 2000); // 发呆 2-4秒
             console.log(`AI: 发呆 ${waitTime}ms`);
             behaviorTimeout = setTimeout(decideNextMove, waitTime);
         } else {
-            // === 特殊动作 ===
+            // 特殊动作
             doSpecialAction();
         }
     }
@@ -165,7 +155,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         playAnim(choice);
 
-        // 动作持续时间 (大笑和演奏久一点，震惊短一点)
+        // 动作持续时间
         let duration = 3000;
         if (choice === 'amazing') duration = 1500;
 
@@ -177,8 +167,6 @@ document.addEventListener('DOMContentLoaded', () => {
         return Math.floor(Math.random() * (max - min + 1)) + min;
     }
 
-    // ================= 交互彩蛋 =================
-    // 即使是自动的，点击小人也可以强制触发“震惊”
     charContainer.addEventListener('click', () => {
         clearTimeout(behaviorTimeout); // 打断当前的思考
         stopAll();

@@ -1,33 +1,24 @@
 body {
-    /* --- 核心修改：锁定屏幕，禁止滚动 --- */
     height: 100vh;
-    /* 强制高度为屏幕高度 */
     overflow: hidden;
     /* 隐藏滚动条 */
-
     display: flex;
     /* 使用 Flexbox */
     justify-content: center;
     /* 水平居中 */
     align-items: center;
     /* 垂直居中 */
-
-    /* --- 背景设置保持不变 --- */
-    background-color: #fdf1ce;
     margin: 0;
-
     background-image:
         linear-gradient(to top,
-            rgba(253, 241, 206, 0) 0%,
-            rgba(253, 241, 206, 0.8) 60%,
+            rgba(253, 241, 206, 0) 50%,
+            rgba(253, 241, 206, 0.8) 75%,
             rgba(253, 241, 206, 1) 100%),
         url('../imgs/contact-imgs/contact-bg.jpg');
-    /* 你的背景图 */
-
+    image-rendering: pixelated;
     background-position: bottom center;
     background-repeat: no-repeat;
     background-size: cover;
-    /* 建议改为 cover 以确保填满屏幕 */
 }
 
 .page-wrapper {
@@ -44,8 +35,7 @@ body {
     align-items: center;
 }
 
-/* 1. 卡片容器：只负责布局和层级，不设置背景 */
-/* 1. 修改 .paper-panel：减小内边距，取消滚动条 */
+/*只负责布局和层级，不设置背景 */
 .paper-panel {
     position: relative;
     z-index: 1;
@@ -81,6 +71,7 @@ body {
     right: 0;
     bottom: 0;
     background-image: url('../imgs/all-imgs/letterBG.png');
+    image-rendering: pixelated;
     background-size: 100% 100%;
     opacity: 0.8;
     /*稍微调高不透明度，让文字更清 */
@@ -88,7 +79,6 @@ body {
     border-radius: 15px;
 }
 
-/* --- 新增：左右分栏布局 --- */
 .split-layout {
     display: flex;
     gap: 30px;

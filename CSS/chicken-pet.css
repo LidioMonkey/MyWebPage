@@ -23,8 +23,6 @@
     
     /* 关键：保持像素画清晰，不模糊 */
     image-rendering: pixelated; 
-    image-rendering: -moz-crisp-edges;
-    image-rendering: crisp-edges;
     
     display: block;
 }

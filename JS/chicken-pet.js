@@ -1,5 +1,4 @@
 /* --- 小鸡动态动作配置 --- */
-// 这里的路径对应你上传的文件结构
 const animConfig = {
     // 1. 行走动作 (Walking)
     'walk-left': [
@@ -44,8 +43,6 @@ const animConfig = {
         './imgs/chicken-pet/right-sleep/tile_5_3.png',
         './imgs/chicken-pet/right-sleep/tile_5_4.png'
     ],
-
-    // 备用：如果有更细致的睡觉方向，可以在这里加
 };
 
 // 动画播放速度 (毫秒)
@@ -67,7 +64,9 @@ function playAction(actionName) {
     }
 
     // 清除旧的定时器
-    if (animationTimer) clearInterval(animationTimer);
+    if (animationTimer) {
+        clearInterval(animationTimer)
+    };
 
     // 定义播放逻辑
     const frames = animConfig[actionName];
@@ -75,13 +74,11 @@ function playAction(actionName) {
         console.error("未找到动作配置:", actionName);
         return;
     }
-    
-    if (actionName.includes('sleep')) {
-        // 如果动作名称里包含 "sleep" (比如 sleep-left 或 sleep-right)
-        // 直接显示该动作数组的【最后一张图】
-        imgElement.src = frames[frames.length - 1];
 
-        // 并且直接 return，不启动下面的 setInterval 循环
+    if (actionName.includes('sleep')) {
+        // 如果动作名称里包含 "sleep"
+        // 直接显示该动作数组的最后一张图
+        imgElement.src = frames[frames.length - 1];
         return;
     }
 
@@ -120,8 +117,8 @@ function initAI() {
     document.body.appendChild(container);
 
     // 初始位置
-    let x = window.innerWidth / 2;
-    let y = window.innerHeight / 2;
+    let x = window.innerWidth / 5 * 4;
+    let y = window.innerHeight / 5 * 4;
     container.style.left = x + 'px';
     container.style.top = y + 'px';
 
@@ -140,10 +137,12 @@ function initAI() {
         const dx = targetX - x;
         const dy = targetY - y;
         const dist = Math.hypot(dx, dy);
+        // 计算直角三角形的斜边长度
         const speed = 80; // 移动速度 (像素/秒)
         const duration = dist / speed;
+        // 根据距离和速度计算所需时间
 
-        // 3. 智能选择行走动画 (根据提供的四组素材)
+        // 3. 智能选择行走动画
         let moveAnim = '';
 
         if (dx > 0) {
@@ -197,7 +196,7 @@ function initAI() {
                 } else {
                     nextAction = 'sleep-left';
                 }
-                restTime = 5000; // 睡久一点
+                restTime = 3000; // 睡久一点
             }
 
             playAction(nextAction);
@@ -218,6 +217,5 @@ window.onload = function () {
     preloadImages(); // 先预加载图片
     initAI();        // 再启动小鸡
 
-    // 如果你有其他 JS 逻辑，不要覆盖这一行
     console.log("小鸡已部署!");
 };

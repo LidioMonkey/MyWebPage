@@ -1,8 +1,6 @@
 /* 1. 设置全局默认鼠标样式 */
 body {
-    /* url: 图片路径 (注意：CSS里的路径是相对于CSS文件的，所以用 ../ 返回上一级)
-       auto: 如果图片加载失败，使用系统默认样式 (必须写，否则不生效)
-    */
+    image-rendering: pixelated;
     cursor: url('../imgs/cursor/cursor.png'), auto;
 }
 
@@ -18,6 +16,7 @@ input[type="submit"],
     /* pointer: 标准的小手样式作为备选
     */
     cursor: url('../imgs/cursor/cursor-hand.png'), pointer;
+    image-rendering: pixelated;
 }
 
 .back-home-img-btn {
@@ -33,7 +32,7 @@ input[type="submit"],
 
     width: 150px;
     height: 100px;
-
+    image-rendering: pixelated;
     background-image: url('../imgs/backbotton/back-btn.png');
 
     background-size: contain;
@@ -50,21 +49,7 @@ input[type="submit"],
     background-image: url('../imgs/backbotton/back-btn-hover-on.png');
 }
 
-/* 点击时的状态 (可选) */
 .back-home-img-btn:active {
     transform: scale(0.95);
     /* 点击时稍微缩小，模拟按压感 */
-}
-
-/* --- 手机端适配 --- */
-@media (max-width: 768px) {
-    .back-home-img-btn {
-        /* 手机上底部有导航栏，需要把按钮往上抬，防止被挡住 */
-        bottom: 100px;
-        right: 20px;
-
-        /* 如果图片在手机上太大，可以在这里缩小一点 */
-        /* width: 48px; */
-        /* height: 48px; */
-    }
 }
